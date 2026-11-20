@@ -1,0 +1,204 @@
+SIMULIERTER MARKTTEST – 100 erfundene Ladenbesitzer:innen in Aachen
+Angebot: Laden-Website 690 € + 15 €/Monat
+Keine echten Personen, keine echten Umfragedaten.
+
+  1. KAUF       Friseur, Pontviertel (Website: alt, Budget bis 800 €)
+     „Meine Seite sieht aus wie 2014. Wenn das unter 1.000 € bleibt, machen wir's.“
+  2. NEIN       Friseur, Burtscheid (Website: keine, Budget bis 300 €)
+     „Termine laufen über Instagram und Telefon, das reicht mir.“
+  3. NEIN       Friseur, Innenstadt (Website: gut, Budget bis 0 €)
+     „Wir haben eine Agentur, die das betreut.“
+  4. VIELLEICHT Friseur, Brand (Website: keine, Budget bis 500 €)
+     „Für 500 € sofort, für 690 € muss ich überlegen.“
+  5. VIELLEICHT Friseur, Eilendorf (Website: alt, Budget bis 400 €)
+     „Lieber 30 € im Monat als alles auf einmal.“
+  6. KAUF       Friseur, Frankenberger Viertel (Website: keine, Budget bis 700 €)
+     „Wenn Kunden direkt Termine anfragen können, bin ich dabei.“
+  7. NEIN       Friseur, Laurensberg (Website: alt, Budget bis 0 €)
+     „Ich hab keine Zeit, mich darum zu kümmern.“
+  8. NEIN       Friseur, Haaren (Website: keine, Budget bis 250 €)
+     „Gerade ist jeder Euro verplant.“
+  9. VIELLEICHT Friseur, Ostviertel (Website: keine, Budget bis 600 €)
+     „Zeig mir erst eine echte Seite, die du gemacht hast.“
+ 10. NEIN       Friseur, Kornelimünster (Website: gut, Budget bis 0 €)
+     „Läuft bei uns über ein Buchungsportal, das passt.“
+ 11. VIELLEICHT Barbershop, Innenstadt (Website: keine, Budget bis 450 €)
+     „Für 450 € mit allem, dann ja.“
+ 12. NEIN       Barbershop, Pontviertel (Website: keine, Budget bis 0 €)
+     „Meine Kunden finden mich über TikTok und Insta.“
+ 13. KAUF       Friseur, Forst (Website: alt, Budget bis 900 €)
+     „Ehrlich, meine Seite ist peinlich. Mach mir was Ordentliches.“
+ 14. NEIN       Friseur, Richterich (Website: keine, Budget bis 300 €)
+     „Mein Neffe bastelt mir das irgendwann.“
+ 15. KAUF       Nagelstudio, Innenstadt (Website: keine, Budget bis 700 €)
+     „Das mit dem Design-Ausprobieren will ich genau so.“
+ 16. VIELLEICHT Nagelstudio, Burtscheid (Website: keine, Budget bis 400 €)
+     „Sieht toll aus, aber 690 € ist für mich viel.“
+ 17. NEIN       Nagelstudio, Eilendorf (Website: keine, Budget bis 0 €)
+     „Meine Kundinnen buchen per DM.“
+ 18. VIELLEICHT Nagelstudio, Haaren (Website: alt, Budget bis 600 €)
+     „Gefällt mir, aber du hast noch keine echten Kunden, oder?“
+ 19. KAUF       Kosmetikstudio, Frankenberger Viertel (Website: alt, Budget bis 1200 €)
+     „Ich will bei Google gefunden werden. Was kostet das komplett?“
+ 20. NEIN       Kosmetikstudio, Laurensberg (Website: gut, Budget bis 0 €)
+     „Ich mach das selbst mit Wix, reicht.“
+ 21. VIELLEICHT Nagelstudio, Ostviertel (Website: keine, Budget bis 350 €)
+     „Kann ich das in Raten zahlen?“
+ 22. KAUF       Lash & Brow Studio, Innenstadt (Website: keine, Budget bis 700 €)
+     „Ich beantworte jeden Tag 20-mal die gleiche Preisfrage. Ja, bitte.“
+ 23. VIELLEICHT Kosmetikstudio, Brand (Website: alt, Budget bis 500 €)
+     „Nur wenn ich Preise selbst ändern kann.“
+ 24. NEIN       Nagelstudio, Pontviertel (Website: keine, Budget bis 200 €)
+     „Ich hab gerade erst eröffnet, kein Geld dafür.“
+ 25. NEIN       Kosmetikstudio, Kornelimünster (Website: keine, Budget bis 0 €)
+     „Ich arbeite allein, für sowas hab ich keinen Kopf.“
+ 26. VIELLEICHT Nagelstudio, Hörn (Website: keine, Budget bis 550 €)
+     „Frag mich im Januar nochmal.“
+ 27. KAUF       Café, Pontviertel (Website: keine, Budget bis 900 €)
+     „Leute fragen ständig, ob wir offen haben. Die Jetzt-geöffnet-Anzeige will ich.“
+ 28. VIELLEICHT Café, Frankenberger Viertel (Website: alt, Budget bis 600 €)
+     „Gefällt mir. Hast du schon ein echtes Café gemacht?“
+ 29. NEIN       Bäckerei, Brand (Website: gut, Budget bis 0 €)
+     „Wir sind Filiale, das macht die Zentrale.“
+ 30. KAUF       Café, Innenstadt (Website: keine, Budget bis 1100 €)
+     „Die Tafel mit dem Kuchen des Tages ist genau unser Ding.“
+ 31. VIELLEICHT Bäckerei, Eilendorf (Website: alt, Budget bis 400 €)
+     „Wenn ich die Preise selbst anpassen kann, vielleicht.“
+ 32. NEIN       Café, Burtscheid (Website: keine, Budget bis 0 €)
+     „Google Maps zeigt schon alles an.“
+ 33. KAUF       Konditorei, Innenstadt (Website: alt, Budget bis 1500 €)
+     „Wenn man darüber Torten vorbestellen kann, sofort.“
+ 34. NEIN       Café, Ostviertel (Website: keine, Budget bis 300 €)
+     „Wir kämpfen gerade mit den Energiekosten.“
+ 35. NEIN       Bäckerei, Richterich (Website: keine, Budget bis 0 €)
+     „Ich höre in zwei Jahren auf, das lohnt sich nicht mehr.“
+ 36. VIELLEICHT Café, Laurensberg (Website: keine, Budget bis 500 €)
+     „Für 500 hätte ich direkt ja gesagt.“
+ 37. NEIN       Eiscafé, Pontviertel (Website: keine, Budget bis 0 €)
+     „Im Sommer läuft's von allein.“
+ 38. VIELLEICHT Café, Haaren (Website: alt, Budget bis 700 €)
+     „Erst nach dem Weihnachtsgeschäft.“
+ 39. KAUF       Restaurant, Innenstadt (Website: alt, Budget bis 1200 €)
+     „Unsere Karte online ist drei Jahre alt. Das muss weg.“
+ 40. NEIN       Imbiss, Ostviertel (Website: keine, Budget bis 0 €)
+     „Wir sind auf Lieferando, das reicht.“
+ 41. NEIN       Pizzeria, Burtscheid (Website: alt, Budget bis 300 €)
+     „Für so was geb ich nicht so viel aus.“
+ 42. NEIN       Restaurant, Pontviertel (Website: gut, Budget bis 0 €)
+     „Haben wir, mit Reservierung.“
+ 43. VIELLEICHT Restaurant, Frankenberger Viertel (Website: keine, Budget bis 800 €)
+     „Nur mit Online-Reservierung.“
+ 44. NEIN       Dönerladen, Haaren (Website: keine, Budget bis 0 €)
+     „Brauch ich nicht.“
+ 45. VIELLEICHT Restaurant, Kornelimünster (Website: alt, Budget bis 1000 €)
+     „Zeig mir was Echtes aus der Gastro, dann reden wir.“
+ 46. NEIN       Imbiss, Eilendorf (Website: keine, Budget bis 200 €)
+     „Zu teuer für einen Imbiss.“
+ 47. KAUF       Restaurant, Laurensberg (Website: alt, Budget bis 1500 €)
+     „Wir wollen mehr Feiern buchen. Dafür brauchen wir eine gute Seite.“
+ 48. VIELLEICHT Asiatisches Restaurant, Innenstadt (Website: keine, Budget bis 500 €)
+     „Geht das auch zweisprachig?“
+ 49. VIELLEICHT Weinbar, Pontviertel (Website: alt, Budget bis 650 €)
+     „Bei 650 wäre ich sofort dabei.“
+ 50. NEIN       Restaurant, Brand (Website: keine, Budget bis 0 €)
+     „Meine Tochter macht das.“
+ 51. VIELLEICHT Boutique, Innenstadt (Website: alt, Budget bis 900 €)
+     „Ohne Onlineshop bringt mir das wenig.“
+ 52. VIELLEICHT Buchladen, Frankenberger Viertel (Website: alt, Budget bis 600 €)
+     „Ich will Lesungen selbst eintragen.“
+ 53. NEIN       Second-Hand-Laden, Pontviertel (Website: keine, Budget bis 300 €)
+     „Unsere Teile verkaufen wir über Insta-Stories.“
+ 54. KAUF       Fahrradladen, Burtscheid (Website: alt, Budget bis 1000 €)
+     „Werkstatt-Termine online, das spart uns viele Anrufe.“
+ 55. VIELLEICHT Unverpacktladen, Ostviertel (Website: keine, Budget bis 500 €)
+     „Monatlich zahlen wäre besser.“
+ 56. NEIN       Spielwarenladen, Innenstadt (Website: gut, Budget bis 0 €)
+     „Wir haben einen Shopify-Shop.“
+ 57. NEIN       Optiker, Brand (Website: gut, Budget bis 0 €)
+     „Läuft über unseren Verbund.“
+ 58. VIELLEICHT Weinhandel, Laurensberg (Website: alt, Budget bis 800 €)
+     „Interessant. Wer hat das schon bei dir gemacht?“
+ 59. VIELLEICHT Geschenkeladen, Kornelimünster (Website: keine, Budget bis 400 €)
+     „Unter 500 € bin ich dabei.“
+ 60. NEIN       Plattenladen, Pontviertel (Website: keine, Budget bis 0 €)
+     „Unsere Leute sind auf Insta und Discogs.“
+ 61. KAUF       Schreinerei, Eilendorf (Website: alt, Budget bis 1500 €)
+     „Wenn ich bei Google oben stehe, rechnet sich das mit einem Auftrag.“
+ 62. VIELLEICHT Malerbetrieb, Haaren (Website: keine, Budget bis 800 €)
+     „Ich hab die Bücher voll, frag in drei Monaten.“
+ 63. KAUF       Elektrobetrieb, Richterich (Website: alt, Budget bis 1000 €)
+     „Wir suchen Azubis, dafür brauchen wir eine moderne Seite.“
+ 64. NEIN       Fliesenleger, Brand (Website: keine, Budget bis 0 €)
+     „Läuft alles über Empfehlung.“
+ 65. KAUF       Goldschmiede, Innenstadt (Website: alt, Budget bis 1200 €)
+     „Meine Stücke müssen gut aussehen. Galerie wie beim Fotografen, bitte.“
+ 66. NEIN       Änderungsschneiderei, Burtscheid (Website: keine, Budget bis 300 €)
+     „Zu teuer für eine Änderungsschneiderei.“
+ 67. NEIN       Dachdecker, Laurensberg (Website: gut, Budget bis 0 €)
+     „Haben wir schon.“
+ 68. VIELLEICHT Kfz-Werkstatt, Eilendorf (Website: alt, Budget bis 700 €)
+     „Du machst ja eher Cafés und Nagelstudios, oder?“
+ 69. VIELLEICHT Gärtnerei, Kornelimünster (Website: keine, Budget bis 600 €)
+     „Zeig mal was für Gärtner.“
+ 70. VIELLEICHT Raumausstatter, Frankenberger Viertel (Website: alt, Budget bis 600 €)
+     „Für 600 ja.“
+ 71. KAUF       Physiotherapie, Burtscheid (Website: alt, Budget bis 1200 €)
+     „Wir suchen Therapeuten und brauchen eine Seite, die nicht nach 2010 aussieht.“
+ 72. VIELLEICHT Heilpraktikerin, Frankenberger Viertel (Website: keine, Budget bis 500 €)
+     „Bei Heilberufen gibt es Werberegeln. Kennst du dich da aus?“
+ 73. NEIN       Ergotherapie, Haaren (Website: gut, Budget bis 0 €)
+     „Haben wir.“
+ 74. VIELLEICHT Logopädie, Laurensberg (Website: alt, Budget bis 800 €)
+     „Muss barrierefrei sein.“
+ 75. VIELLEICHT Massagepraxis, Innenstadt (Website: keine, Budget bis 400 €)
+     „Für 400 sofort.“
+ 76. VIELLEICHT Hebammenpraxis, Ostviertel (Website: keine, Budget bis 600 €)
+     „Klingt gut, aber wir haben gerade keine Zeit.“
+ 77. NEIN       Psychotherapie, Burtscheid (Website: keine, Budget bis 0 €)
+     „Ich bin über die Kammer und Doctolib gelistet.“
+ 78. NEIN       Zahnarztpraxis, Innenstadt (Website: gut, Budget bis 0 €)
+     „Das macht unsere Agentur.“
+ 79. KAUF       Yogastudio, Frankenberger Viertel (Website: alt, Budget bis 800 €)
+     „Einen Kursplan, den ich selbst ändere? Dann ja.“
+ 80. NEIN       Boxstudio, Pontviertel (Website: keine, Budget bis 300 €)
+     „Instagram ist unsere Website.“
+ 81. VIELLEICHT Pilatesstudio, Burtscheid (Website: keine, Budget bis 600 €)
+     „Nur mit Buchungssystem.“
+ 82. NEIN       Fitnessstudio, Eilendorf (Website: gut, Budget bis 0 €)
+     „Kette, macht die Zentrale.“
+ 83. KAUF       Tanzschule, Laurensberg (Website: alt, Budget bis 1200 €)
+     „Wir verlieren Anmeldungen, weil die Seite auf dem Handy nicht geht.“
+ 84. VIELLEICHT Personal Trainer, Innenstadt (Website: keine, Budget bis 350 €)
+     „Für 350 € direkt.“
+ 85. KAUF       Fotografin, Burtscheid (Website: alt, Budget bis 900 €)
+     „Das Halbschatten-Konzept ist genau mein Stil.“
+ 86. NEIN       Fotograf, Innenstadt (Website: gut, Budget bis 0 €)
+     „Ich mache meine Seite selbst mit Squarespace.“
+ 87. VIELLEICHT Hochzeitsfotografin, Brand (Website: alt, Budget bis 700 €)
+     „Wie viele Seiten hast du schon live?“
+ 88. VIELLEICHT Fotostudio, Pontviertel (Website: keine, Budget bis 500 €)
+     „Für 500 € ja.“
+ 89. KAUF       Blumenladen, Burtscheid (Website: keine, Budget bis 700 €)
+     „Wenn Kunden Sträuße vorbestellen können: sofort.“
+ 90. NEIN       Blumenladen, Eilendorf (Website: alt, Budget bis 300 €)
+     „Blumen sind knapp kalkuliert.“
+ 91. VIELLEICHT Floristin, Frankenberger Viertel (Website: keine, Budget bis 500 €)
+     „Nach Muttertag.“
+ 92. NEIN       Blumenladen, Brand (Website: keine, Budget bis 0 €)
+     „Ich bin 67, das lohnt sich nicht mehr.“
+ 93. NEIN       Tattoostudio, Pontviertel (Website: keine, Budget bis 0 €)
+     „Tattoo läuft komplett über Instagram.“
+ 94. VIELLEICHT Tattoostudio, Innenstadt (Website: alt, Budget bis 800 €)
+     „Mit Galerie und Anfrageformular, ja. Was kostet das genau?“
+ 95. KAUF       Fahrschule, Haaren (Website: alt, Budget bis 900 €)
+     „Schüler wollen sich online anmelden. Mach das.“
+ 96. NEIN       Nachhilfe, Laurensberg (Website: keine, Budget bis 300 €)
+     „Zu teuer für mich als Einzelperson.“
+ 97. VIELLEICHT Hundesalon, Eilendorf (Website: keine, Budget bis 500 €)
+     „Für 500 bin ich dabei.“
+ 98. NEIN       Textilreinigung, Innenstadt (Website: alt, Budget bis 0 €)
+     „Meine Kunden kommen sowieso vorbei.“
+ 99. VIELLEICHT Musikschule, Burtscheid (Website: alt, Budget bis 1000 €)
+     „Nur wenn ich Kurse selbst eintragen kann.“
+100. NEIN       Kiosk, Ostviertel (Website: keine, Budget bis 0 €)
+     „Ein Kiosk braucht keine Website.“
