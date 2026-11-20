@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Schaufenster Beitragsvorlagen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Vorlagen für Instagram-Beiträge (1080 × 1350) und Profilbild (1080 × 1080).
+   Markenzeichen: gestreifte Ladenmarkise oben an jedem Beitrag. Blau und Papier im Wechsel. */
+:root{
+  --cobalt:#2B46D6;
+  --cobalt-deep:#1D31A6;
+  --paper:#F1F0EB;
+  --ink:#15171F;
+  --white:#FFFFFF;
+  --sun:#F6D44C;
+  --muted-on-paper:#5A5C66;
+  --display:"Archivo","Arial Black",sans-serif;
+  --mono:"DM Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#888;display:flex;flex-wrap:wrap;gap:40px;padding:40px;font-family:var(--display)}
+.post{width:1080px;height:1350px;position:relative;overflow:hidden;display:grid;grid-template-rows:auto auto 1fr auto;font-variation-settings:"wdth" 100}
+.avatar{width:1080px;height:1080px;position:relative;overflow:hidden;background:var(--cobalt);display:grid;place-items:center}
+.blue{background:var(--cobalt);color:var(--white);--stripe:var(--white);--stripe-alt:var(--cobalt-deep);--soft:rgb(255 255 255 / .78)}
+.paper{background:var(--paper);color:var(--ink);--stripe:var(--cobalt);--stripe-alt:var(--white);--soft:var(--muted-on-paper)}
+.awning{display:block;width:1080px;height:96px}
+.ph{display:flex;justify-content:space-between;align-items:center;padding:48px 72px 0}
+.logo{display:flex;align-items:center;gap:14px;font-weight:800;font-size:26px;letter-spacing:.1em;font-variation-settings:"wdth" 125}
+.logo svg{width:44px;height:26px}
+.tag{font-family:var(--mono);font-size:24px;letter-spacing:.06em;text-transform:uppercase;color:var(--soft)}
+.body{padding:44px 72px 0;display:flex;flex-direction:column;min-height:0}
+.pf{display:flex;justify-content:space-between;align-items:center;padding:0 72px 56px;font-family:var(--mono);font-size:24px;color:var(--soft)}
+.xl{font-weight:800;font-variation-settings:"wdth" 125;letter-spacing:-.02em;line-height:.95;margin:0}
+.lead{font-size:38px;line-height:1.35;font-weight:450;margin:0;color:var(--soft)}
+.sticker{position:absolute;display:grid;place-items:center;text-align:center;border-radius:50%;background:var(--sun);color:var(--ink);font-weight:800;font-variation-settings:"wdth" 110;line-height:1}
+
+/* Fallstudien */
+.title{font-weight:800;font-variation-settings:"wdth" 125;font-size:100px;letter-spacing:-.03em;line-height:1;margin:0}
+.sub{font-size:34px;margin:14px 0 0;color:var(--soft);font-weight:500}
+.mock{position:relative;height:640px;margin-top:44px}
+.browser{position:absolute;left:0;top:0;width:820px;border-radius:18px;overflow:hidden;background:#FFFFFF;box-shadow:0 40px 60px -30px rgb(0 0 0 / .45),0 0 0 2px rgb(0 0 0 / .08)}
+.browser .bar{height:38px;background:#E9E8E4;display:flex;align-items:center;gap:10px;padding-left:18px}
+.browser .bar i{width:13px;height:13px;border-radius:50%;background:#C9C7C1}
+.browser img{display:block;width:100%}
+.phone{position:absolute;right:0;bottom:0;width:262px;padding:11px;border-radius:44px;background:#0F1014;box-shadow:0 40px 60px -24px rgb(0 0 0 / .55)}
+.phone img{display:block;width:100%;border-radius:34px}
+.chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:40px}
+.chips span{font-size:27px;font-weight:600;padding:12px 22px;border-radius:999px;border:2.5px solid currentColor}
+.concept{font-family:var(--mono);font-size:22px;color:var(--soft);margin-top:auto;padding-bottom:28px}
+
+/* Checkliste */
+.checks{list-style:none;margin:56px 0 0;padding:0;display:grid;gap:30px}
+.checks li{display:grid;grid-template-columns:64px 1fr;gap:28px;align-items:start}
+.box{width:64px;height:64px;border-radius:14px;background:var(--sun);display:grid;place-items:center}
+.box svg{width:38px;height:38px}
+.checks b{display:block;font-size:42px;font-weight:700;line-height:1.15;font-variation-settings:"wdth" 105}
+.checks small{display:block;font-size:28px;color:var(--soft);margin-top:4px;font-weight:450}
+
+/* Ablauf */
+.steps{list-style:none;margin:60px 0 0;padding:0;display:grid;gap:0;position:relative}
+.steps li{display:grid;grid-template-columns:110px 1fr;gap:30px;padding-bottom:40px;position:relative}
+.steps li:not(:last-child)::before{content:"";position:absolute;left:54px;top:100px;bottom:8px;width:3px;background:var(--cobalt);opacity:.35}
+.num{width:110px;height:110px;border-radius:50%;background:var(--cobalt);color:var(--white);display:grid;place-items:center;font-size:54px;font-weight:800;font-variation-settings:"wdth" 125}
+.steps b{display:block;font-size:46px;font-weight:800;font-variation-settings:"wdth" 115;margin-top:12px}
+.steps li > div > span{display:block;font-size:30px;line-height:1.35;color:var(--soft);margin-top:6px}
+
+/* Details */
+.shot-wrap{position:relative;flex:1;display:grid;place-items:center;min-height:0}
+.note{font-family:var(--mono);font-size:26px;letter-spacing:.02em}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Markise: 18 Streifen à 60 px, Bogenkante unten -->
+    <symbol id="awning" viewBox="0 0 1080 96">
+      <rect x="0" y="0" width="1080" height="14" style="fill:var(--stripe)"/>
+      <g id="stripes"></g>
+    </symbol>
+    <symbol id="mini-awning" viewBox="0 0 120 70">
+      <rect x="0" y="0" width="120" height="10" rx="2" style="fill:var(--stripe)"/>
+      <rect x="0" y="10" width="20" height="40" style="fill:var(--stripe)"/><circle cx="10" cy="50" r="10" style="fill:var(--stripe)"/>
+      <rect x="20" y="10" width="20" height="40" style="fill:var(--stripe-alt)"/><circle cx="30" cy="50" r="10" style="fill:var(--stripe-alt)"/>
+      <rect x="40" y="10" width="20" height="40" style="fill:var(--stripe)"/><circle cx="50" cy="50" r="10" style="fill:var(--stripe)"/>
+      <rect x="60" y="10" width="20" height="40" style="fill:var(--stripe-alt)"/><circle cx="70" cy="50" r="10" style="fill:var(--stripe-alt)"/>
+      <rect x="80" y="10" width="20" height="40" style="fill:var(--stripe)"/><circle cx="90" cy="50" r="10" style="fill:var(--stripe)"/>
+      <rect x="100" y="10" width="20" height="40" style="fill:var(--stripe-alt)"/><circle cx="110" cy="50" r="10" style="fill:var(--stripe-alt)"/>
+    </symbol>
+    <symbol id="check" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5" fill="none" stroke="#15171F" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<!-- Profilbild -->
+<div class="avatar blue" id="avatar">
+  <svg viewBox="0 0 640 560" width="640" height="560" aria-hidden="true">
+    <use href="#mini-awning" x="40" y="0" width="560" height="327"/>
+    <rect x="96" y="282" width="448" height="250" rx="10" fill="none" stroke="#FFFFFF" stroke-width="22"/>
+    <line x1="320" y1="282" x2="320" y2="532" stroke="#FFFFFF" stroke-width="16"/>
+    <line x1="96" y1="400" x2="544" y2="400" stroke="#FFFFFF" stroke-width="16"/>
+  </svg>
+</div>
+
+<!-- 1 · Hallo (blau) -->
+<section class="post blue" id="p1">
+  <svg class="awning"><use href="#awning"/></svg>
+  <header class="ph"><span class="logo"><svg><use href="#mini-awning"/></svg>SCHAUFENSTER</span><span class="tag">Hallo</span></header>
+  <div class="body">
+    <h1 class="xl" style="font-size:150px;margin-top:40px">Websites für kleine Läden.</h1>
+    <p class="lead" style="margin-top:56px;max-width:860px">Für Nagelstudios, Cafés, Fotograf:innen und alle Läden um die Ecke. Schön, schnell und gemacht fürs Handy.</p>
+  </div>
+  <footer class="pf"><span>@schaufenster.studio</span><span>Neu hier →</span></footer>
+  <div class="sticker" style="width:250px;height:250px;right:70px;bottom:150px;font-size:44px;transform:rotate(-10deg)">Hallo,<br>Nachbar!</div>
+</section>
+
+<!-- 2 · Konzept Nagelstudio (Papier) -->
+<section class="post paper" id="p2">
+  <svg class="awning"><use href="#awning"/></svg>
+  <header class="ph"><span class="logo"><svg><use href="#mini-awning"/></svg>SCHAUFENSTER</span><span class="tag">Konzept 01 · Nagelstudio</span></header>
+  <div class="body">
+    <h2 class="title">Feinschliff</h2>
+    <p class="sub">Nagel- &amp; Beautystudio, Hamburg-Ottensen</p>
+    <div class="mock">
+      <div class="browser"><div class="bar"><i></i><i></i><i></i></div><img src="screens/feinschliff-desktop.png" alt=""></div>
+      <div class="phone"><img src="screens/feinschliff-mobile.png" alt=""></div>
+    </div>
+    <div class="chips"><span>Design-Konfigurator</span><span>Preisliste</span><span>Terminanfrage</span></div>
+  </div>
+  <footer class="pf"><span>@schaufenster.studio</span><span>Konzeptarbeit</span></footer>
+</section>
+
+<!-- 3 · Konzept Café (blau) -->
+<section class="post blue" id="p3">
+  <svg class="awning"><use href="#awning"/></svg>
+  <header class="ph"><span class="logo"><svg><use href="#mini-awning"/></svg>SCHAUFENSTER</span><span class="tag">Konzept 02 · Café</span></header>
+  <div class="body">
+    <h2 class="title">Mahlgrad</h2>
+    <p class="sub">Café &amp; Backstube, Berlin-Neukölln</p>
+    <div class="mock">
+      <div class="browser"><div class="bar"><i></i><i></i><i></i></div><img src="screens/mahlgrad-desktop.png" alt=""></div>
+      <div class="phone"><img src="screens/mahlgrad-mobile.png" alt=""></div>
+    </div>
+    <div class="chips"><span>Kuchen des Tages</span><span>Jetzt geöffnet</span><span>Mahlgrad-Finder</span></div>
+  </div>
+  <footer class="pf"><span>@schaufenster.studio</span><span>Konzeptarbeit</span></footer>
+</section>
+
+<!-- 4 · Konzept Fotografin (Papier) -->
+<section class="post paper" id="p4">
+  <svg class="awning"><use href="#awning"/></svg>
+  <header class="ph"><span class="logo"><svg><use href="#mini-awning"/></svg>SCHAUFENSTER</span><span class="tag">Konzept 03 · Fotografie</span></header>
+  <div class="body">
+    <h2 class="title">Halbschatten</h2>
+    <p class="sub">Porträt- &amp; Hochzeitsfotografie, München</p>
+    <div class="mock">
+      <div class="browser"><div class="bar"><i></i><i></i><i></i></div><img src="screens/halbschatten-desktop.png" alt=""></div>
+      <div class="phone"><img src="screens/halbschatten-mobile.png" alt=""></div>
+    </div>
+    <div class="chips"><span>Galerie mit Filter</span><span>Pakete</span><span>Ablauf</span></div>
+  </div>
+  <footer class="pf"><span>@schaufenster.studio</span><span>Konzeptarbeit</span></footer>
+</section>
+
+<!-- 5 · Checkliste (blau) -->
+<section class="post blue" id="p5">
+  <svg class="awning"><use href="#awning"/></svg>
+  <header class="ph"><span class="logo"><svg><use href="#mini-awning"/></svg>SCHAUFENSTER</span><span class="tag">Checkliste</span></header>
+  <div class="body">
+    <h2 class="xl" style="font-size:80px">5 Dinge, die auf jede Laden-Website gehören</h2>
+    <ul class="checks">
+      <li><span class="box"><svg><use href="#check"/></svg></span><div><b>Öffnungszeiten</b><small>am besten mit „heute“ markiert</small></div></li>
+      <li><span class="box"><svg><use href="#check"/></svg></span><div><b>Telefonnummer zum Antippen</b><small>ein Tipp auf dem Handy, schon klingelt’s</small></div></li>
+      <li><span class="box"><svg><use href="#check"/></svg></span><div><b>Adresse mit Kartenlink</b><small>plus Hinweis wie „Hinterhaus, 1. Stock“</small></div></li>
+      <li><span class="box"><svg><use href="#check"/></svg></span><div><b>Preise</b><small>oder zumindest ein Preisrahmen</small></div></li>
+      <li><span class="box"><svg><use href="#check"/></svg></span><div><b>Echte Fotos</b><small>von euch, eurem Laden, eurer Arbeit</small></div></li>
+    </ul>
+  </div>
+  <footer class="pf"><span>@schaufenster.studio</span><span>Speichern für später ↓</span></footer>
+</section>
+
+<!-- 6 · Detail Café (Papier) -->
+<section class="post paper" id="p6">
+  <svg class="awning"><use href="#awning"/></svg>
+  <header class="ph"><span class="logo"><svg><use href="#mini-awning"/></svg>SCHAUFENSTER</span><span class="tag">Detail · Café</span></header>
+  <div class="body">
+    <h2 class="xl" style="font-size:84px">Zeigt von selbst, ob gerade offen ist.</h2>
+    <div class="shot-wrap">
+      <img src="screens/mahlgrad-board.png" alt="" style="width:700px;transform:rotate(1.5deg);margin-top:40px">
+      <img src="screens/mahlgrad-status.png" alt="" style="position:absolute;left:0;top:30px;width:560px;transform:rotate(-3deg);border-radius:999px;box-shadow:0 24px 40px -18px rgb(0 0 0 / .45)">
+    </div>
+    <p class="note" style="margin:24px 0 32px;color:var(--soft)">Wochentag + Uhrzeit → „Jetzt geöffnet“. Ganz ohne Pflege.</p>
+  </div>
+  <footer class="pf"><span>@schaufenster.studio</span><span>Café „Mahlgrad“, Konzept</span></footer>
+</section>
+
+<!-- 7 · Detail Nagelstudio (blau) -->
+<section class="post blue" id="p7">
+  <svg class="awning"><use href="#awning"/></svg>
+  <header class="ph"><span class="logo"><svg><use href="#mini-awning"/></svg>SCHAUFENSTER</span><span class="tag">Detail · Nagelstudio</span></header>
+  <div class="body">
+    <h2 class="xl" style="font-size:76px">Kundinnen probieren ihr Design vor dem Termin aus.</h2>
+    <div class="shot-wrap">
+      <img src="screens/feinschliff-studio.png" alt="" style="height:640px;width:auto;margin-top:24px;transform:rotate(-2.5deg);border-radius:28px;box-shadow:0 40px 60px -28px rgb(0 0 0 / .5)">
+    </div>
+    <p class="note" style="margin:20px 0 32px;color:var(--soft)">4 Formen · 10 Farben · 3 Finishes → direkt in die Terminanfrage</p>
+  </div>
+  <footer class="pf"><span>@schaufenster.studio</span><span>„Feinschliff“, Konzept</span></footer>
+</section>
+
+<!-- 8 · Ablauf (Papier) -->
+<section class="post paper" id="p8">
+  <svg class="awning"><use href="#awning"/></svg>
+  <header class="ph"><span class="logo"><svg><use href="#mini-awning"/></svg>SCHAUFENSTER</span><span class="tag">Ablauf</span></header>
+  <div class="body">
+    <h2 class="xl" style="font-size:84px">So kommt dein Laden ins Netz</h2>
+    <ol class="steps">
+      <li><span class="num">1</span><div><b>Kennenlernen</b><span>30 Minuten über deinen Laden, deine Kundschaft und was die Seite können soll.</span></div></li>
+      <li><span class="num">2</span><div><b>Entwurf</b><span>Eine erste Version zum Anklicken, auf dem Handy und am Rechner.</span></div></li>
+      <li><span class="num">3</span><div><b>Feinschliff</b><span>Texte, Fotos und Details anpassen, bis alles passt.</span></div></li>
+      <li><span class="num">4</span><div><b>Online</b><span>Domain, Hosting und Google-Eintrag. Dann geht’s live.</span></div></li>
+    </ol>
+  </div>
+  <footer class="pf"><span>@schaufenster.studio</span><span>Fragen? Schreib mir →</span></footer>
+</section>
+
+<!-- 9 · Mythos (blau) -->
+<section class="post blue" id="p9">
+  <svg class="awning"><use href="#awning"/></svg>
+  <header class="ph"><span class="logo"><svg><use href="#mini-awning"/></svg>SCHAUFENSTER</span><span class="tag">Oft gehört</span></header>
+  <div class="body">
+    <h2 class="xl" style="font-size:132px;margin-top:40px">„Wir haben doch Instagram.“</h2>
+    <p class="lead" style="margin-top:60px;max-width:900px;color:var(--white)">Super! Aber wer bei Google nach „Café in der Nähe“ sucht, landet auf Websites und nicht in deinen Stories.</p>
+    <p style="margin-top:56px"><span style="display:inline-block;background:var(--sun);color:var(--ink);font-size:40px;font-weight:800;padding:18px 32px;border-radius:999px;font-variation-settings:'wdth' 110">Instagram + Website = bestes Team</span></p>
+  </div>
+  <footer class="pf"><span>@schaufenster.studio</span><span>Websites für kleine Läden</span></footer>
+</section>
+
+<script>
+  // Streifen der großen Markise erzeugen
+  const g = document.getElementById("stripes");
+  let s = "";
+  for (let i = 0; i < 18; i++) {
+    const v = i % 2 ? "var(--stripe-alt)" : "var(--stripe)";
+    s += `<rect x="${i * 60}" y="14" width="60" height="52" style="fill:${v}"/><circle cx="${i * 60 + 30}" cy="66" r="30" style="fill:${v}"/>`;
+  }
+  g.innerHTML = s;
+</script>
+</body>
+</html>

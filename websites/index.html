@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Schaufenster Webdesign</title>
+<meta name="description" content="Schaufenster – Websites für Nagelstudios, Cafés, Fotograf:innen und alle Läden um die Ecke.">
+<link rel="stylesheet" href="fonts/schaufenster.css">
+<style>
+/* Layout: blaue Ladenstraße als Hero (drei Schaufenster mit den Konzepten), danach Papiergrund:
+   Leistungen, Konzepte groß, Website-Check zum Abhaken, Ablauf, Fragen, blauer Kontaktblock. */
+:root{
+  --paper:#F1F0EB;
+  --surface:#FFFFFF;
+  --ink:#15171F;
+  --muted:#5A5C66;
+  --line:#D9D8D1;
+  --cobalt:#2B46D6;
+  --cobalt-deep:#1D31A6;
+  --on-cobalt:#FFFFFF;
+  --soft-on-cobalt:rgb(255 255 255 / .8);
+  --accent-text:#2B46D6;
+  --sun:#F6D44C;
+  --on-sun:#15171F;
+  --frame:#F1F0EB;
+  --display:"Archivo","Arial Black",system-ui,sans-serif;
+  --mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+  --gutter:clamp(16px,4vw,48px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#10121C;--surface:#191C2A;--ink:#ECEBE6;--muted:#A3A5B2;--line:#2D3144;--cobalt:#3550E0;--cobalt-deep:#22379F;--accent-text:#A3B4FF;--frame:#E9E8E3;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#10121C;--surface:#191C2A;--ink:#ECEBE6;--muted:#A3A5B2;--line:#2D3144;--cobalt:#3550E0;--cobalt-deep:#22379F;--accent-text:#A3B4FF;--frame:#E9E8E3;color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--display);font-size:17px;line-height:1.55;font-variation-settings:"wdth" 100;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1200px;margin-inline:auto;padding-left:max(var(--gutter),env(safe-area-inset-left,0px));padding-right:max(var(--gutter),env(safe-area-inset-right,0px))}
+a{color:inherit}
+img{max-width:100%}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px;border-radius:6px}
+h1,h2,h3{margin:0;font-weight:800;line-height:1;letter-spacing:-.025em;text-wrap:balance}
+p{margin:0}
+.label{font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.wide{font-variation-settings:"wdth" 125}
+
+/* Markise */
+.awning{height:46px;background:repeating-linear-gradient(90deg,var(--a1) 0 36px,var(--a2) 36px 72px)}
+.scallops{height:18px;background:
+  radial-gradient(circle at 18px 0,var(--a1) 17.5px,transparent 18.5px) 0 0/72px 18px repeat-x,
+  radial-gradient(circle at 54px 0,var(--a2) 17.5px,transparent 18.5px) 0 0/72px 18px repeat-x}
+
+/* Hero */
+.hero{background:var(--cobalt);color:var(--on-cobalt);margin-top:calc(-1 * env(safe-area-inset-top,0px));padding-top:env(safe-area-inset-top,0px);--a1:var(--on-cobalt);--a2:var(--cobalt-deep)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:22px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:800;letter-spacing:.1em;font-size:1rem;font-variation-settings:"wdth" 125}
+.logo svg{width:38px;height:22px}
+.links{display:flex;align-items:center;gap:clamp(14px,2.4vw,30px);font-weight:600;font-size:.95rem}
+.links a:not(.btn){text-decoration:none;color:var(--soft-on-cobalt)}
+.links a:not(.btn):hover{color:var(--on-cobalt)}
+@media (max-width:760px){.links a:not(.btn){display:none}}
+.btn{font:inherit;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.9rem 1.5rem;border-radius:999px;font-weight:800;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .15s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-sun{background:var(--sun);color:var(--on-sun)}
+.btn-line{border-color:currentColor;background:transparent}
+.btn-small{padding:.55rem 1.1rem;font-size:.9rem}
+.hero-copy{display:grid;gap:22px;padding-block:clamp(28px,6vw,72px) clamp(36px,5vw,56px);max-width:58rem}
+.hero h1{font-size:clamp(3rem,9vw,7.6rem);line-height:.92;letter-spacing:-.035em;font-variation-settings:"wdth" 125}
+.hero .lead{font-size:clamp(1.08rem,1.8vw,1.35rem);max-width:34em;color:var(--soft-on-cobalt)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+
+/* Ladenstraße */
+.street{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,3vw,40px);align-items:end;padding-bottom:0}
+.shop{display:grid;text-decoration:none;color:inherit;transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+.shop:hover{transform:translateY(-8px)}
+.shop .awning{height:clamp(18px,3vw,34px);background:repeating-linear-gradient(90deg,var(--a1) 0 12%,var(--a2) 12% 24.9%);border-radius:4px 4px 0 0}
+.shop .scallops{height:clamp(8px,1.4vw,14px);background:
+  radial-gradient(circle at 50% 0,var(--a1) 49%,transparent 51%) 0 0/24.9% 100% repeat-x,
+  radial-gradient(circle at 50% 0,var(--a2) 49%,transparent 51%) 12.45% 0/24.9% 100% repeat-x;margin-bottom:-2px;position:relative;z-index:1}
+.win{display:block;background:var(--frame);padding:clamp(5px,1vw,12px) clamp(5px,1vw,12px) 0;border-radius:0 0 0 0}
+.win img{display:block;width:100%;aspect-ratio:9/13;object-fit:cover;object-position:top;border-radius:4px 4px 0 0}
+.sill{display:flex;justify-content:space-between;align-items:center;gap:8px;background:var(--frame);color:#15171F;padding:clamp(6px,1vw,12px) clamp(8px,1.2vw,16px);font-family:var(--mono);font-size:clamp(.62rem,1.1vw,.82rem);letter-spacing:.04em;text-transform:uppercase;border-top:2px solid rgb(0 0 0 / .08)}
+.sill span:last-child{opacity:.6}
+@media (max-width:540px){.sill span:last-child{display:none}}
+.pavement{height:clamp(14px,2vw,22px);background:var(--cobalt-deep)}
+
+/* Bänder */
+.band{padding-block:clamp(64px,9vw,120px)}
+.sec-head{display:grid;gap:14px;max-width:46rem;margin-bottom:clamp(32px,5vw,56px)}
+.sec-head h2{font-size:clamp(2.2rem,5.4vw,4rem);font-variation-settings:"wdth" 120}
+.sec-head p:not(.label){font-size:1.1rem;color:var(--muted)}
+
+/* Leistungen */
+.feats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(18px,2.5vw,28px)}
+@media (max-width:980px){.feats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.feats{grid-template-columns:minmax(0,1fr)}}
+.feat{display:grid;gap:12px;align-content:start;padding-top:20px;border-top:3px solid var(--ink)}
+.feat svg{width:40px;height:40px;color:var(--accent-text)}
+.feat h3{font-size:1.3rem;font-variation-settings:"wdth" 110}
+.feat p{color:var(--muted)}
+
+/* Konzepte */
+.cases{display:grid;gap:clamp(56px,8vw,110px)}
+.case{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(28px,5vw,72px);align-items:center}
+.case:nth-child(even){grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr)}
+.case:nth-child(even) .device{order:2}
+@media (max-width:900px){.case,.case:nth-child(even){grid-template-columns:minmax(0,1fr)}.case:nth-child(even) .device{order:0}}
+.device{position:relative;padding-bottom:12%;padding-right:10%}
+.browser{border-radius:14px;overflow:hidden;background:#FFFFFF;box-shadow:0 40px 70px -40px rgb(0 0 0 / .45),0 0 0 1px rgb(0 0 0 / .08)}
+.browser .bar{height:28px;background:#E9E8E4;display:flex;align-items:center;gap:7px;padding-left:14px}
+.browser .bar i{width:10px;height:10px;border-radius:50%;background:#C9C7C1}
+.browser img{display:block;width:100%}
+.phone{position:absolute;right:0;bottom:0;width:27%;padding:1.2%;border-radius:clamp(16px,2.6vw,32px);background:#0F1014;box-shadow:0 30px 50px -20px rgb(0 0 0 / .55)}
+.phone img{display:block;width:100%;border-radius:clamp(12px,2vw,24px)}
+.case-text{display:grid;gap:16px;align-content:center}
+.case-text h3{font-size:clamp(2.2rem,4.4vw,3.4rem);font-variation-settings:"wdth" 125}
+.case-text .kind{font-size:1.1rem;color:var(--muted);margin-top:-6px}
+.case-text ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.case-text li{padding-block:12px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px}
+.case-text li::before{content:"";width:12px;height:12px;margin-top:7px;border-radius:50%;background:var(--dot)}
+.case-text .go{justify-self:start;color:var(--ink);font-weight:800;text-decoration:none;border-bottom:3px solid var(--sun);padding-bottom:2px}
+.case-text .go:hover{border-bottom-color:var(--accent-text)}
+.tag{justify-self:start;font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;border:1.5px solid var(--line);color:var(--muted)}
+
+/* Website-Check */
+.check-band{background:var(--surface);border-block:1px solid var(--line)}
+.check{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,5vw,72px);align-items:start}
+@media (max-width:900px){.check{grid-template-columns:minmax(0,1fr)}}
+.qs{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.q{position:relative}
+.q input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.q label{display:grid;grid-template-columns:44px minmax(0,1fr);gap:16px;align-items:center;padding:16px 18px;border:2px solid var(--line);border-radius:16px;cursor:pointer;transition:border-color .15s,background-color .15s}
+.q .box{width:44px;height:44px;border-radius:12px;border:2px solid var(--line);display:grid;place-items:center;transition:background-color .15s,border-color .15s}
+.q .box svg{width:24px;height:24px;opacity:0;color:var(--on-sun)}
+.q b{display:block;font-size:1.08rem}
+.q small{display:block;color:var(--muted);font-size:.9rem}
+.q input:checked + label{border-color:var(--ink)}
+.q input:checked + label .box{background:var(--sun);border-color:var(--sun)}
+.q input:checked + label .box svg{opacity:1}
+.q input:focus-visible + label{outline:3px solid var(--accent-text);outline-offset:2px}
+.result{position:sticky;top:24px;display:grid;gap:18px;padding:clamp(22px,3vw,34px);border-radius:24px;background:var(--cobalt);color:var(--on-cobalt)}
+.score{font-size:clamp(4rem,9vw,6.5rem);font-weight:800;line-height:.9;font-variation-settings:"wdth" 125;font-variant-numeric:tabular-nums}
+.score small{font-size:.32em;font-weight:600;color:var(--soft-on-cobalt);letter-spacing:0}
+.meter{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.meter i{height:12px;border-radius:4px;background:rgb(255 255 255 / .22);transition:background-color .2s}
+.meter i.on{background:var(--sun)}
+.verdict{font-size:1.15rem;font-weight:700;line-height:1.35}
+.verdict-sub{color:var(--soft-on-cobalt)}
+
+/* Ablauf */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(18px,3vw,36px)}
+@media (max-width:980px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.steps{grid-template-columns:minmax(0,1fr)}}
+.steps li{display:grid;gap:12px;align-content:start}
+.num{width:64px;height:64px;border-radius:50%;background:var(--cobalt);color:var(--on-cobalt);display:grid;place-items:center;font-size:1.7rem;font-weight:800;font-variation-settings:"wdth" 125}
+.steps h3{font-size:1.4rem;font-variation-settings:"wdth" 112}
+.steps p{color:var(--muted)}
+
+/* Fragen */
+.faq{display:grid;gap:0;border-top:3px solid var(--ink);max-width:56rem}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:18px;padding-block:22px;font-size:1.2rem;font-weight:700}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;border:2px solid var(--ink);font-weight:600;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding-bottom:22px;color:var(--muted);max-width:62ch}
+
+/* Kontakt */
+.contact{background:var(--cobalt);color:var(--on-cobalt);--a1:var(--on-cobalt);--a2:var(--cobalt-deep)}
+.contact-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:start;padding-block:clamp(56px,8vw,100px)}
+@media (max-width:900px){.contact-in{grid-template-columns:minmax(0,1fr)}}
+.contact h2{font-size:clamp(2.4rem,6vw,4.6rem);font-variation-settings:"wdth" 125;line-height:.95}
+.contact .lead{margin-top:20px;font-size:1.15rem;color:var(--soft-on-cobalt);max-width:30em}
+.direct{display:grid;gap:14px;margin-top:32px}
+.direct-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+.direct .addr{font-family:var(--mono);font-size:clamp(.95rem,2vw,1.15rem);user-select:all;overflow-wrap:anywhere}
+.form{display:grid;gap:14px;padding:clamp(20px,3vw,32px);border-radius:24px;background:var(--surface);color:var(--ink)}
+.form label{font-family:var(--mono);font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.field{display:grid;gap:6px}
+.form input,.form select,.form textarea{font:inherit;font-size:1rem;color:var(--ink);background:var(--paper);border:2px solid var(--line);border-radius:12px;padding:.75rem .9rem;width:100%;min-width:0}
+.form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:var(--cobalt)}
+.form textarea{min-height:120px;resize:vertical}
+.form .btn{justify-self:start;background:var(--ink);color:var(--paper)}
+.status{padding:14px 16px;border-radius:12px;background:var(--paper);border:2px solid var(--sun);font-size:.95rem}
+footer{background:var(--cobalt-deep);color:var(--soft-on-cobalt)}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 28px;padding-block:24px;font-size:.88rem}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="hero" id="start">
+  <div class="awning"></div>
+  <div class="scallops"></div>
+  <div class="wrap">
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a class="logo" href="#start" aria-label="Schaufenster, zum Anfang">
+        <svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="10" rx="2" fill="currentColor"/><g fill="currentColor"><rect x="0" y="10" width="20" height="40"/><circle cx="10" cy="50" r="10"/><rect x="40" y="10" width="20" height="40"/><circle cx="50" cy="50" r="10"/><rect x="80" y="10" width="20" height="40"/><circle cx="90" cy="50" r="10"/></g><g fill="currentColor" opacity=".35"><rect x="20" y="10" width="20" height="40"/><circle cx="30" cy="50" r="10"/><rect x="60" y="10" width="20" height="40"/><circle cx="70" cy="50" r="10"/><rect x="100" y="10" width="20" height="40"/><circle cx="110" cy="50" r="10"/></g></svg>
+        SCHAUFENSTER
+      </a>
+      <div class="links">
+        <a href="#konzepte">Konzepte</a>
+        <a href="#check">Website-Check</a>
+        <a href="#ablauf">Ablauf</a>
+        <a class="btn btn-sun btn-small" href="#kontakt">Anfragen</a>
+      </div>
+    </nav>
+    <div class="hero-copy">
+      <p class="label" style="color:var(--soft-on-cobalt)">Webdesign für den Laden um die Ecke</p>
+      <h1>Websites für kleine Läden.</h1>
+      <p class="lead">Für Nagelstudios, Cafés, Fotograf:innen und alle, deren Kundschaft um die Ecke wohnt. Gebaut fürs Handy, mit Öffnungszeiten und Telefonnummer auf den ersten Blick, und so gestaltet, dass man euren Laden darin wiedererkennt.</p>
+      <div class="cta">
+        <a class="btn btn-sun" href="#kontakt">Projekt anfragen</a>
+        <a class="btn btn-line" href="#check">Website-Check machen</a>
+      </div>
+    </div>
+    <div class="street" aria-label="Drei Konzepte">
+      <a class="shop" href="#konzept-feinschliff" style="--a1:#A3123A;--a2:#FFFFFF">
+        <span class="awning"></span><span class="scallops"></span>
+        <span class="win"><img src="img/feinschliff-mobile.png" alt="Handyansicht: Nagelstudio Feinschliff"></span>
+        <span class="sill"><span>Nagelstudio</span><span>Konzept 01</span></span>
+      </a>
+      <a class="shop" href="#konzept-mahlgrad" style="--a1:#E9A21C;--a2:#FFFFFF">
+        <span class="awning"></span><span class="scallops"></span>
+        <span class="win"><img src="img/mahlgrad-mobile.png" alt="Handyansicht: Café Mahlgrad"></span>
+        <span class="sill"><span>Café</span><span>Konzept 02</span></span>
+      </a>
+      <a class="shop" href="#konzept-halbschatten" style="--a1:#161616;--a2:#FFFFFF">
+        <span class="awning"></span><span class="scallops"></span>
+        <span class="win"><img src="img/halbschatten-mobile.png" alt="Handyansicht: Fotografie Halbschatten"></span>
+        <span class="sill"><span>Fotografie</span><span>Konzept 03</span></span>
+      </a>
+    </div>
+  </div>
+  <div class="pavement"></div>
+</header>
+
+<main>
+<section class="band">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="label">Was du bekommst</p>
+      <h2>Eine Seite, die Kundschaft in den Laden bringt</h2>
+    </div>
+    <div class="feats">
+      <div class="feat">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><rect x="11" y="3" width="18" height="34" rx="4"/><line x1="17" y1="31" x2="23" y2="31"/></svg>
+        <h3>Zuerst fürs Handy</h3>
+        <p>Die meisten suchen unterwegs. Deshalb entsteht jede Seite zuerst für den kleinen Bildschirm.</p>
+      </div>
+      <div class="feat">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><circle cx="20" cy="20" r="16"/><path d="M20 11v10l6 4"/></svg>
+        <h3>Das Wichtigste sofort</h3>
+        <p>Öffnungszeiten, Telefonnummer zum Antippen und Adresse, ohne dass jemand suchen muss.</p>
+      </div>
+      <div class="feat">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M6 15h28l-3-9H9z"/><path d="M8 15v19h24V15"/><rect x="15" y="22" width="10" height="12"/></svg>
+        <h3>Sieht aus wie dein Laden</h3>
+        <p>Farben, Schrift und Details kommen aus deinem Laden, nicht aus einem Baukasten.</p>
+      </div>
+      <div class="feat">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><circle cx="17" cy="17" r="11"/><line x1="25" y1="25" x2="35" y2="35"/></svg>
+        <h3>Bei Google zu finden</h3>
+        <p>Saubere Grundlagen für die Suche und Hilfe beim Google-Unternehmensprofil.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="konzepte" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="label">Konzepte</p>
+      <h2>Drei Läden, drei Gesichter</h2>
+      <p>Diese drei Läden habe ich mir ausgedacht, um zu zeigen, wie unterschiedlich eine Laden-Website aussehen kann. Jede Seite funktioniert wirklich, klick dich durch.</p>
+    </div>
+    <div class="cases">
+      <article class="case" id="konzept-feinschliff" style="--dot:#A3123A">
+        <div class="device">
+          <div class="browser"><div class="bar"><i></i><i></i><i></i></div><img src="img/feinschliff-desktop.png" alt="Desktopansicht der Nagelstudio-Website Feinschliff" loading="lazy"></div>
+          <div class="phone"><img src="img/feinschliff-mobile.png" alt="" loading="lazy"></div>
+        </div>
+        <div class="case-text">
+          <span class="tag">Konzept 01 · erfundener Laden</span>
+          <h3>Feinschliff</h3>
+          <p class="kind">Nagel- &amp; Beautystudio, Hamburg</p>
+          <ul>
+            <li>Kundinnen stellen ihr Design aus Form, Farbe und Finish selbst zusammen</li>
+            <li>Das Wunschdesign landet direkt in der Terminanfrage</li>
+            <li>Preisliste, die man ohne Zoomen lesen kann</li>
+          </ul>
+          <a class="go" href="feinschliff/index.html">Konzept ansehen →</a>
+        </div>
+      </article>
+      <article class="case" id="konzept-mahlgrad" style="--dot:#E9A21C">
+        <div class="device">
+          <div class="browser"><div class="bar"><i></i><i></i><i></i></div><img src="img/mahlgrad-desktop.png" alt="Desktopansicht der Café-Website Mahlgrad" loading="lazy"></div>
+          <div class="phone"><img src="img/mahlgrad-mobile.png" alt="" loading="lazy"></div>
+        </div>
+        <div class="case-text">
+          <span class="tag">Konzept 02 · erfundener Laden</span>
+          <h3>Mahlgrad</h3>
+          <p class="kind">Café &amp; Backstube, Berlin</p>
+          <ul>
+            <li>Die Tafel neben der Tür zeigt online jeden Tag den Kuchen des Tages</li>
+            <li>„Jetzt geöffnet“ rechnet sich selbst aus Wochentag und Uhrzeit</li>
+            <li>Mahlgrad-Finder für alle, die Bohnen mitnehmen</li>
+          </ul>
+          <a class="go" href="mahlgrad/index.html">Konzept ansehen →</a>
+        </div>
+      </article>
+      <article class="case" id="konzept-halbschatten" style="--dot:var(--ink)">
+        <div class="device">
+          <div class="browser"><div class="bar"><i></i><i></i><i></i></div><img src="img/halbschatten-desktop.png" alt="Desktopansicht der Fotografie-Website Halbschatten" loading="lazy"></div>
+          <div class="phone"><img src="img/halbschatten-mobile.png" alt="" loading="lazy"></div>
+        </div>
+        <div class="case-text">
+          <span class="tag">Konzept 03 · erfundener Laden</span>
+          <h3>Halbschatten</h3>
+          <p class="kind">Porträt- &amp; Hochzeitsfotografie, München</p>
+          <ul>
+            <li>Galerie im Stil eines Kontaktbogens, mit Filter und Großansicht</li>
+            <li>Klare Pakete mit Preisen</li>
+            <li>Ablauf vom ersten Anruf bis zur fertigen Galerie</li>
+          </ul>
+          <a class="go" href="halbschatten/index.html">Konzept ansehen →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band check-band" id="check">
+  <div class="wrap check">
+    <div>
+      <div class="sec-head">
+        <p class="label">Website-Check</p>
+        <h2>Wie fit ist deine Website?</h2>
+        <p>Hak ab, was deine Seite schon hat. Dauert 30 Sekunden.</p>
+      </div>
+      <ul class="qs" id="qs">
+        <li class="q"><input type="checkbox" id="q1"><label for="q1"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span><span><b>Öffnungszeiten stehen ganz oben</b><small>und stimmen auch an Feiertagen</small></span></label></li>
+        <li class="q"><input type="checkbox" id="q2"><label for="q2"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span><span><b>Telefonnummer lässt sich antippen</b><small>ein Tipp auf dem Handy, schon klingelt’s</small></span></label></li>
+        <li class="q"><input type="checkbox" id="q3"><label for="q3"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span><span><b>Adresse mit Link zur Karte</b><small>plus Hinweise wie „Hinterhaus, 1. Stock“</small></span></label></li>
+        <li class="q"><input type="checkbox" id="q4"><label for="q4"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span><span><b>Preise oder ein Preisrahmen</b><small>damit niemand erst anrufen muss</small></span></label></li>
+        <li class="q"><input type="checkbox" id="q5"><label for="q5"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span><span><b>Echte Fotos</b><small>von euch, eurem Laden und eurer Arbeit</small></span></label></li>
+      </ul>
+    </div>
+    <aside class="result" aria-live="polite">
+      <p class="label" style="color:var(--soft-on-cobalt)">Dein Ergebnis</p>
+      <p class="score"><span id="score">0</span><small> von 5</small></p>
+      <div class="meter" id="meter" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <p class="verdict" id="verdict">Hak links ab, was deine Seite schon hat.</p>
+      <p class="verdict-sub" id="verdict-sub">Noch keine Website? Dann fangen wir bei null an. Das ist sogar die einfachste Ausgangslage.</p>
+      <a class="btn btn-sun" href="#kontakt">Darüber reden</a>
+    </aside>
+  </div>
+</section>
+
+<section class="band" id="ablauf">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="label">Ablauf</p>
+      <h2>So kommt dein Laden ins Netz</h2>
+    </div>
+    <ol class="steps">
+      <li><span class="num">1</span><h3>Kennenlernen</h3><p>30 Minuten über deinen Laden, deine Kundschaft und was die Seite können soll. Gern bei dir vor Ort.</p></li>
+      <li><span class="num">2</span><h3>Entwurf</h3><p>Du bekommst eine erste Version zum Anklicken, auf dem Handy und am Rechner.</p></li>
+      <li><span class="num">3</span><h3>Feinschliff</h3><p>Wir passen Texte, Fotos und Details an, bis alles passt.</p></li>
+      <li><span class="num">4</span><h3>Online</h3><p>Domain, Hosting und Google-Unternehmensprofil. Dann geht die Seite live.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="band" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="label">Fragen</p>
+      <h2>Was oft gefragt wird</h2>
+    </div>
+    <div class="faq">
+      <details open><summary>Ich habe doch Instagram. Reicht das nicht?</summary><p>Instagram ist super, um Arbeiten zu zeigen. Wer aber bei Google nach „Café in der Nähe“ sucht, landet auf Websites und Google-Einträgen, nicht in deinen Stories. Und eine eigene Seite gehört dir, egal was mit den Plattformen passiert.</p></details>
+      <details><summary>Was brauchst du von mir?</summary><p>Ein Gespräch über deinen Laden, deine Öffnungszeiten, Preise und ein paar Fotos. Wenn du keine guten Fotos hast oder dir die Texte schwerfallen, finden wir gemeinsam eine Lösung.</p></details>
+      <details><summary>Kann ich die Seite später selbst ändern?</summary><p>Auf Wunsch ja. Dinge, die sich oft ändern, wie Öffnungszeiten, Preise oder der Kuchen des Tages, kann ich so einrichten, dass du sie selbst anpasst.</p></details>
+      <details><summary>Was kostet eine Website?</summary><p>Das hängt davon ab, was die Seite können soll. Nach dem Kennenlernen bekommst du ein festes Angebot, bevor irgendetwas losgeht.</p></details>
+      <details><summary>Und was kostet sie im Monat?</summary><p>Für Domain und Hosting fallen meist nur wenige Euro im Monat an. Ich helfe dir bei der Einrichtung, die Verträge laufen auf deinen Namen.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="kontakt">
+  <div class="awning"></div>
+  <div class="scallops"></div>
+  <div class="wrap contact-in">
+    <div>
+      <h2>Lass uns über deinen Laden reden.</h2>
+      <p class="lead">Schreib mir ein paar Sätze zu deinem Laden. Ich melde mich innerhalb von zwei Tagen.</p>
+      <div class="direct">
+        <p class="label" style="color:var(--soft-on-cobalt)">Direkt</p>
+        <div class="direct-row"><span class="addr" id="mail">schaufenster.studio@gmail.com</span><button class="btn btn-line btn-small" type="button" id="copy">Kopieren</button></div>
+        <div class="direct-row"><a class="addr" href="https://www.instagram.com/schaufenster.studio/" target="_blank" rel="noopener">Instagram @schaufenster.studio ↗</a></div>
+      </div>
+    </div>
+    <form class="form" id="form" name="kontakt" method="POST" data-netlify="true" netlify-honeypot="website">
+      <input type="hidden" name="form-name" value="kontakt">
+      <p hidden><label>Nicht ausfüllen <input name="website"></label></p>
+      <div class="field"><label for="f-name">Dein Name</label><input id="f-name" name="name" autocomplete="name" required></div>
+      <div class="field"><label for="f-shop">Dein Laden</label><input id="f-shop" name="laden" placeholder="z. B. Nagelstudio in Ottensen"></div>
+      <div class="field"><label for="f-mail">E-Mail oder Telefon</label><input id="f-mail" name="kontakt" required></div>
+      <div class="field"><label for="f-msg">Was soll die Seite können?</label><textarea id="f-msg" name="nachricht" placeholder="Hast du schon eine Website? Was nervt dich daran?"></textarea></div>
+      <button class="btn" type="submit">Nachricht senden</button>
+      <p class="status" id="status" role="status" hidden></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© Schaufenster · Websites für kleine Läden</span>
+    <span><a href="impressum/index.html">Impressum</a> · <a href="datenschutz/index.html">Datenschutz</a></span>
+  </div>
+</footer>
+
+<script>
+(() => {
+  // Website-Check
+  const boxes = [...document.querySelectorAll("#qs input")];
+  const bars = [...document.querySelectorAll("#meter i")];
+  const T = {
+    0: ["Hak links ab, was deine Seite schon hat.", "Noch keine Website? Dann fangen wir bei null an. Das ist sogar die einfachste Ausgangslage."],
+    1: ["Da fehlt noch einiges.", "Gerade diese Punkte entscheiden, ob jemand vorbeikommt oder weitersucht."],
+    2: ["Da fehlt noch einiges.", "Gerade diese Punkte entscheiden, ob jemand vorbeikommt oder weitersucht."],
+    3: ["Gute Basis.", "Mit den fehlenden Punkten holst du deutlich mehr raus. Meist sind das kleine Änderungen."],
+    4: ["Fast perfekt.", "Ein Punkt noch, dann hat deine Seite alles, was Kund:innen suchen."],
+    5: ["Stark! Alles Wichtige ist da.", "Wenn deine Seite trotzdem nicht nach deinem Laden aussieht, lass uns reden."]
+  };
+  function update() {
+    const n = boxes.filter(b => b.checked).length;
+    document.getElementById("score").textContent = n;
+    bars.forEach((b, i) => b.classList.toggle("on", i < n));
+    const any = boxes.some(b => b.checked);
+    const [v, s] = any ? T[n] : T[0];
+    document.getElementById("verdict").textContent = v;
+    document.getElementById("verdict-sub").textContent = s;
+  }
+  boxes.forEach(b => b.addEventListener("change", update));
+  update();
+
+  // E-Mail kopieren
+  const copyBtn = document.getElementById("copy"), mail = document.getElementById("mail");
+  copyBtn.addEventListener("click", () => {
+    const ok = () => { copyBtn.textContent = "Kopiert"; setTimeout(() => copyBtn.textContent = "Kopieren", 1600); };
+    const fb = () => { const r = document.createRange(); r.selectNodeContents(mail); const s = getSelection(); s.removeAllRanges(); s.addRange(r); copyBtn.textContent = "Markiert"; };
+    try { navigator.clipboard.writeText(mail.textContent).then(ok, fb); } catch (_) { fb(); }
+  });
+
+  // Kontaktformular: auf Netlify wird es dort gespeichert, sonst Hinweis auf die E-Mail
+  const form = document.getElementById("form"), status = document.getElementById("status");
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    const data = new URLSearchParams(new FormData(form)).toString();
+    let sent = false;
+    try {
+      const r = await fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: data });
+      sent = r.ok;
+    } catch (_) {}
+    status.textContent = sent
+      ? "Danke! Deine Nachricht ist angekommen. Ich melde mich innerhalb von zwei Tagen."
+      : "Das Formular ist hier noch nicht verbunden. Schreib mir bitte direkt an " + mail.textContent + ".";
+    status.hidden = false;
+    if (sent) form.reset();
+  });
+})();
+</script>
+</body>
+</html>

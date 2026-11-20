@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Feinschliff Nagelstudio</title>
+<meta name="description" content="Feinschliff – Nagel- und Beautystudio in Hamburg-Ottensen. Maniküre, Gel, Pediküre, Wimpern und Brauen.">
+<link rel="stylesheet" href="../fonts/feinschliff.css">
+<style>
+/* Layout: Hero zweispaltig – links der Name in Bodoni-Kursiv, rechts ein Lackfächer zum Durchprobieren.
+   Darunter ruhige Bänder: Preisliste mit Punktlinien, Ablauf (echte Reihenfolge), Team, Termin. */
+@property --polish { syntax: "<color>"; inherits: true; initial-value: #A3123A; }
+:root{
+  --bg:#F4EEF1;
+  --surface:#FCF9FA;
+  --ink:#2A1320;
+  --muted:#6E5765;
+  --line:#DDCFD6;
+  --lack:#A3123A;
+  --on-lack:#FFF4F7;
+  --shadow:rgb(42 19 32 / .32);
+  --display:"Bodoni Moda","Bodoni 72",Didot,"Times New Roman",serif;
+  --sans:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --gutter:clamp(16px,4vw,44px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1A0F16;--surface:#25171F;--ink:#F6EAF0;--muted:#BEA6B4;--line:#45303D;--lack:#F2557E;--on-lack:#1A0F16;--shadow:rgb(0 0 0 / .6);color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1A0F16;--surface:#25171F;--ink:#F6EAF0;--muted:#BEA6B4;--line:#45303D;--lack:#F2557E;--on-lack:#1A0F16;--shadow:rgb(0 0 0 / .6);color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin-inline:auto;padding-left:max(var(--gutter),env(safe-area-inset-left,0px));padding-right:max(var(--gutter),env(safe-area-inset-right,0px))}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--lack);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.05;text-wrap:balance;margin:0}
+p{margin:0}
+.eyebrow{font-size:.76rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+/* Kopfzeile */
+.top-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:20px}
+.brand{font-family:var(--display);font-style:italic;font-size:1.7rem;text-decoration:none;line-height:1;display:flex;align-items:baseline;gap:.55rem}
+.brand small{font-family:var(--sans);font-style:normal;font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.nav{display:flex;align-items:center;gap:clamp(14px,2.4vw,30px);font-size:.95rem;font-weight:500}
+.nav a:not(.btn){text-decoration:none;color:var(--muted)}
+.nav a:not(.btn):hover{color:var(--ink)}
+@media (max-width:680px){.nav a:not(.btn){display:none}.brand small{display:none}}
+
+.btn{font:inherit;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1.45rem;border-radius:999px;background:var(--lack);color:var(--on-lack);font-weight:700;text-decoration:none;border:1.5px solid var(--lack);cursor:pointer;transition:transform .15s ease,border-color .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn-small{padding:.55rem 1.1rem;font-size:.9rem}
+.btn-block{width:100%}
+
+/* Hero */
+.hero-in{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(32px,5vw,76px);align-items:center;padding-block:clamp(20px,4vw,56px) clamp(64px,9vw,120px)}
+@media (max-width:920px){.hero-in{grid-template-columns:minmax(0,1fr)}.hero h1{font-size:clamp(3.4rem,14vw,7.6rem)}}
+.hero h1{font-size:clamp(4rem,7.4vw,7.6rem);font-style:italic;font-weight:500;letter-spacing:-.025em;line-height:.92;margin-block:.16em .2em}
+.hero h1 .dot{color:var(--lack);font-style:normal}
+.lead{font-size:clamp(1.05rem,1.6vw,1.22rem);max-width:33em}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:44px 0 0;padding-top:20px;border-top:1px solid var(--line);max-width:33em}
+.facts dt{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.facts dd{margin:4px 0 0;font-family:var(--display);font-size:clamp(1.15rem,2vw,1.4rem);line-height:1.2}
+
+.studio{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:clamp(18px,3vw,30px);display:grid;gap:20px;box-shadow:0 40px 70px -48px var(--shadow)}
+.studio-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.card-title{font-size:1.55rem;font-style:italic}
+.shade-no{font-variant-numeric:tabular-nums;font-size:.85rem;color:var(--muted);font-weight:700;letter-spacing:.08em}
+#tips{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:420/250;transition:--polish .5s ease;filter:drop-shadow(0 14px 16px var(--shadow))}
+#tips .polish{fill:var(--polish)}
+#tips .base-french{fill:#F5DFE3}
+.studio-label{font-family:var(--display);font-style:italic;font-size:1.2rem;text-align:center;margin-top:-8px}
+.opt{border:0;margin:0;padding:0;min-width:0}
+.opt legend{font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:0;margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative;display:inline-block}
+.chip input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.chip span{display:inline-block;padding:.42rem .95rem;border:1.5px solid var(--line);border-radius:999px;font-size:.9rem;font-weight:600;transition:background-color .15s,border-color .15s,color .15s}
+.chip input:hover + span{border-color:var(--ink)}
+.chip input:checked + span{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.chip input:focus-visible + span{outline:2px solid var(--lack);outline-offset:2px}
+.swatches{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:8px}
+@media (max-width:440px){.swatches{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.sw{position:relative;display:block}
+.sw input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer;z-index:1}
+.sw span{display:block;aspect-ratio:3/4;border-radius:50% 50% 42% 42% / 62% 62% 38% 38%;background:var(--c);box-shadow:inset 0 0 0 1px rgb(0 0 0 / .14),inset 5px 6px 7px -5px rgb(255 255 255 / .65);transition:transform .18s ease,box-shadow .18s}
+.sw input:hover + span{transform:translateY(-2px)}
+.sw input:checked + span{transform:translateY(-4px);box-shadow:inset 0 0 0 1px rgb(0 0 0 / .14),inset 5px 6px 7px -5px rgb(255 255 255 / .65),0 0 0 2px var(--surface),0 0 0 4px var(--ink)}
+.sw input:focus-visible + span{outline:2px solid var(--lack);outline-offset:5px}
+
+/* Bänder */
+.band{padding-block:clamp(64px,9vw,120px)}
+.band-alt{background:var(--surface);border-block:1px solid var(--line)}
+.sec-head{display:grid;gap:12px;max-width:40em;margin-bottom:clamp(36px,5vw,60px)}
+.sec-head h2{font-size:clamp(2.3rem,5vw,3.7rem)}
+.sec-head p:not(.eyebrow){color:var(--muted);font-size:1.05rem}
+
+/* Preisliste */
+.prices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(32px,4vw,60px)}
+@media (max-width:920px){.prices{grid-template-columns:minmax(0,1fr)}}
+.prices h3{font-size:1.8rem;font-style:italic;padding-bottom:12px;border-bottom:1.5px solid var(--ink);margin-bottom:6px}
+.plist{list-style:none;margin:0;padding:0}
+.plist li{display:grid;grid-template-columns:minmax(0,max-content) minmax(18px,1fr) auto;column-gap:10px;align-items:baseline;padding-block:11px 9px}
+.plist .nm{font-weight:600;grid-column:1;grid-row:1}
+.plist .dots{grid-column:2;grid-row:1;border-bottom:2px dotted var(--line);height:.8em;transform:translateY(-.25em)}
+.plist .pr{grid-column:3;grid-row:1;font-family:var(--display);font-size:1.2rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+.plist .du{grid-column:1/-1;grid-row:2;font-size:.84rem;color:var(--muted)}
+.note{margin-top:40px;color:var(--muted);font-size:.93rem;max-width:62em}
+
+/* Ablauf */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(22px,3vw,40px);counter-reset:s}
+@media (max-width:980px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.steps{grid-template-columns:minmax(0,1fr)}}
+.steps li{counter-increment:s;display:grid;gap:8px;align-content:start;padding-top:18px;border-top:1.5px solid var(--ink)}
+.steps li::before{content:counter(s);font-family:var(--display);font-style:italic;font-size:3.2rem;line-height:1;color:var(--lack)}
+.steps h3{font-size:1.5rem}
+.steps p{color:var(--muted)}
+.steps .t{font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+.hyg{margin-top:clamp(44px,6vw,80px);display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(18px,4vw,60px);padding:clamp(24px,4vw,44px);border-radius:28px;background:var(--ink);color:var(--bg)}
+.hyg h3{font-size:clamp(1.9rem,3.4vw,2.6rem);font-style:italic}
+.hyg ul{margin:0;padding-left:1.1em;display:grid;gap:10px}
+@media (max-width:760px){.hyg{grid-template-columns:minmax(0,1fr)}}
+
+/* Team */
+.team{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,3vw,32px)}
+@media (max-width:760px){.team{grid-template-columns:minmax(0,1fr)}}
+.person{display:grid;grid-template-columns:auto minmax(0,1fr);gap:22px;align-items:start;padding:clamp(20px,3vw,30px);border:1px solid var(--line);border-radius:24px;background:var(--bg)}
+.mono{width:84px;height:104px;border-radius:50% 50% 42% 42% / 62% 62% 38% 38%;display:grid;place-items:center;font-family:var(--display);font-style:italic;font-size:2.5rem;background:var(--lack);color:var(--on-lack)}
+.mono-2{background:var(--ink);color:var(--bg)}
+.person h3{font-size:1.7rem}
+.role{font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:6px 0 12px!important}
+@media (max-width:420px){.person{grid-template-columns:minmax(0,1fr)}.mono{width:64px;height:80px;font-size:2rem}}
+
+/* Termin */
+.book{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:clamp(28px,4vw,56px);align-items:start}
+@media (max-width:920px){.book{grid-template-columns:minmax(0,1fr)}}
+.req{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;padding:clamp(20px,3vw,32px);background:var(--surface);border:1px solid var(--line);border-radius:28px}
+@media (max-width:560px){.req{grid-template-columns:minmax(0,1fr)}}
+.field{display:grid;gap:6px;min-width:0}
+.field.full{grid-column:1/-1}
+.field label{font-size:.85rem;font-weight:700}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:.72rem .85rem;width:100%;min-width:0}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--lack);box-shadow:0 0 0 3px color-mix(in srgb,var(--lack) 24%,transparent)}
+textarea{min-height:110px;resize:vertical}
+.form-foot{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px}
+.small{font-size:.84rem;color:var(--muted)}
+.done{grid-column:1/-1;padding:16px 18px;border-radius:16px;background:color-mix(in srgb,var(--lack) 11%,var(--surface));border:1px solid color-mix(in srgb,var(--lack) 40%,transparent)}
+.done strong{font-family:var(--display);font-style:italic;font-size:1.3rem;font-weight:500;display:block;margin-bottom:4px}
+.info{display:grid;gap:30px}
+.info h3{font-size:1.45rem;font-style:italic;margin-bottom:8px}
+.hours{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.hours td{padding:7px 0;border-bottom:1px solid var(--line)}
+.hours td:last-child{text-align:right}
+.hours tr.today td{font-weight:700}
+.hours tr.today td:first-child::after{content:"heute";margin-left:8px;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--on-lack);background:var(--lack);padding:2px 7px;border-radius:999px;vertical-align:2px}
+.copy-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+.phone{font-family:var(--display);font-size:1.7rem;line-height:1.2;user-select:all;font-variant-numeric:tabular-nums}
+
+footer{border-top:1px solid var(--line)}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 28px;padding-block:30px;font-size:.88rem;color:var(--muted)}
+
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="#start">Feinschliff <small>Nagelstudio</small></a>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="#preise">Preise</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#team">Team</a>
+      <a class="btn btn-small" href="#termin">Termin anfragen</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="start">
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <p class="eyebrow">Nagel- &amp; Beautystudio · Hamburg-Ottensen</p>
+      <h1>Feinschliff<span class="dot">.</span></h1>
+      <p class="lead">Gepflegte Hände, saubere Formen und Farbe, die drei Wochen hält. Mira und Lea nehmen sich für jede Maniküre Zeit, ob klassisch, mit Gel oder als kleines Kunstwerk auf zehn Nägeln.</p>
+      <div class="actions">
+        <a class="btn" href="#termin">Termin anfragen</a>
+        <a class="btn btn-ghost" href="#preise">Zur Preisliste</a>
+      </div>
+      <dl class="facts">
+        <div><dt>Gel-Lack hält</dt><dd>3 Wochen</dd></div>
+        <div><dt>Feilen</dt><dd>Einweg</dd></div>
+        <div><dt>Geöffnet</dt><dd>Di – Sa</dd></div>
+      </dl>
+    </div>
+
+    <div class="studio" role="group" aria-labelledby="studio-title">
+      <div class="studio-head">
+        <h2 class="card-title" id="studio-title">Probier dein Design</h2>
+        <span class="shade-no" id="shade-no">Nr. 07</span>
+      </div>
+      <svg id="tips" viewBox="0 0 420 250" role="img" aria-label="Fünf Nagel-Tips in Mandelform, Farbe Kirschlack, Glanz"></svg>
+      <p class="studio-label" id="studio-label" aria-live="polite">Mandel · Kirschlack · Glanz</p>
+      <fieldset class="opt">
+        <legend>Form</legend>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="shape" value="mandel" id="shape-mandel" checked><span>Mandel</span></label>
+          <label class="chip"><input type="radio" name="shape" value="oval" id="shape-oval"><span>Oval</span></label>
+          <label class="chip"><input type="radio" name="shape" value="eckig" id="shape-eckig"><span>Eckig</span></label>
+          <label class="chip"><input type="radio" name="shape" value="ballerina" id="shape-ballerina"><span>Ballerina</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="opt">
+        <legend>Farbe aus unserer Farbkarte</legend>
+        <div class="swatches" id="swatches"></div>
+      </fieldset>
+      <fieldset class="opt">
+        <legend>Finish</legend>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="finish" value="glanz" id="finish-glanz" checked><span>Glanz</span></label>
+          <label class="chip"><input type="radio" name="finish" value="matt" id="finish-matt"><span>Matt</span></label>
+          <label class="chip"><input type="radio" name="finish" value="french" id="finish-french"><span>French</span></label>
+        </div>
+      </fieldset>
+      <a class="btn btn-block" id="use-design" href="#termin">Mit diesem Design anfragen</a>
+    </div>
+  </div>
+</section>
+
+<section class="band band-alt" id="preise">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Leistungen &amp; Preise</p>
+      <h2>Was wir machen und was es kostet</h2>
+      <p>Die Dauer ist ein Richtwert. Beim ersten Termin planen wir zehn Minuten mehr für die Beratung ein.</p>
+    </div>
+    <div class="prices">
+      <div>
+        <h3>Hände</h3>
+        <ul class="plist">
+          <li><span class="nm">Maniküre klassisch</span><span class="dots" aria-hidden="true"></span><span class="pr">35 €</span><span class="du">40 Min. · Feilen, Nagelhaut, Pflegelack</span></li>
+          <li><span class="nm">Maniküre mit Gel-Lack</span><span class="dots" aria-hidden="true"></span><span class="pr">48 €</span><span class="du">60 Min. · hält etwa drei Wochen</span></li>
+          <li><span class="nm">Gel-Lack entfernen</span><span class="dots" aria-hidden="true"></span><span class="pr">15 €</span><span class="du">20 Min. · schonend gefeilt, ohne Aceton-Bad</span></li>
+          <li><span class="nm">Neumodellage Gel</span><span class="dots" aria-hidden="true"></span><span class="pr">75 €</span><span class="du">120 Min. · Verlängerung mit Schablone</span></li>
+          <li><span class="nm">Auffüllen</span><span class="dots" aria-hidden="true"></span><span class="pr">55 €</span><span class="du">90 Min. · nach drei bis vier Wochen</span></li>
+          <li><span class="nm">Nail Art</span><span class="dots" aria-hidden="true"></span><span class="pr">ab 3 €</span><span class="du">pro Nagel · Linien, Chrom, Babyboomer</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Füße</h3>
+        <ul class="plist">
+          <li><span class="nm">Pediküre kosmetisch</span><span class="dots" aria-hidden="true"></span><span class="pr">42 €</span><span class="du">50 Min. · Fußbad, Hornhaut, Nägel</span></li>
+          <li><span class="nm">Pediküre mit Gel-Lack</span><span class="dots" aria-hidden="true"></span><span class="pr">58 €</span><span class="du">75 Min.</span></li>
+          <li><span class="nm">Gel-Lack Füße</span><span class="dots" aria-hidden="true"></span><span class="pr">35 €</span><span class="du">40 Min. · ohne Hornhautbehandlung</span></li>
+          <li><span class="nm">Peeling &amp; Maske</span><span class="dots" aria-hidden="true"></span><span class="pr">+ 8 €</span><span class="du">15 Min. · als Zusatz buchbar</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Wimpern &amp; Brauen</h3>
+        <ul class="plist">
+          <li><span class="nm">Lash Lifting inkl. Färben</span><span class="dots" aria-hidden="true"></span><span class="pr">65 €</span><span class="du">60 Min. · hält sechs bis acht Wochen</span></li>
+          <li><span class="nm">Brow Lifting inkl. Färben</span><span class="dots" aria-hidden="true"></span><span class="pr">55 €</span><span class="du">45 Min.</span></li>
+          <li><span class="nm">Brauen zupfen &amp; färben</span><span class="dots" aria-hidden="true"></span><span class="pr">24 €</span><span class="du">25 Min.</span></li>
+          <li><span class="nm">Wimpern färben</span><span class="dots" aria-hidden="true"></span><span class="pr">15 €</span><span class="du">15 Min.</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">Alle Preise in Euro inklusive 19 % MwSt. Ablösen einer Fremdmodellage: 10 €. Ihr wollt zu zweit kommen? Sagt Bescheid, dann arbeiten Mira und Lea parallel.</p>
+  </div>
+</section>
+
+<section class="band" id="ablauf">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Dein Termin</p>
+      <h2>So läuft eine Gel-Maniküre bei uns ab</h2>
+    </div>
+    <ol class="steps">
+      <li><p class="t">5 Minuten</p><h3>Beratung</h3><p>Form, Länge und Farbe legen wir gemeinsam fest. Screenshots von Designs, die dir gefallen, sind willkommen.</p></li>
+      <li><p class="t">15 Minuten</p><h3>Vorbereitung</h3><p>Nagelhaut zurückschieben, Form feilen und die Oberfläche sanft mattieren, damit der Lack hält.</p></li>
+      <li><p class="t">30 Minuten</p><h3>Farbe</h3><p>Base, zwei Schichten Farbe und Top Coat. Jede Schicht härtet 60 Sekunden unter der LED-Lampe.</p></li>
+      <li><p class="t">10 Minuten</p><h3>Abschluss</h3><p>Nagelöl, Handcreme und ein Pflegetipp für zu Hause. Den nächsten Termin in drei bis vier Wochen buchen wir gleich mit.</p></li>
+    </ol>
+    <div class="hyg">
+      <h3>Hygiene, die du sehen kannst</h3>
+      <ul>
+        <li>Metallwerkzeug wird nach jedem Termin gereinigt und im Klasse-B-Autoklaven sterilisiert. Die Sterilverpackung öffnen wir vor deinen Augen.</li>
+        <li>Feilen und Buffer sind Einwegware. Nach dem Termin nimmst du sie mit oder sie kommen weg.</li>
+        <li>Jeder Platz hat eine eigene Absaugung, damit kein Feilstaub in der Luft hängt.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="band band-alt" id="team">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Team</p>
+      <h2>Zwei Plätze, zwei Spezialistinnen</h2>
+    </div>
+    <div class="team">
+      <article class="person">
+        <div class="mono" aria-hidden="true">M</div>
+        <div>
+          <h3>Mira</h3>
+          <p class="role">Inhaberin · Nageldesign seit 2014</p>
+          <p>Mira hat Feinschliff 2019 eröffnet. Sie mag natürliche Mandelformen, weiche Babyboomer-Verläufe und feine Linien. Wenn du unsicher bist, welche Länge zu deinem Alltag passt, frag sie.</p>
+        </div>
+      </article>
+      <article class="person">
+        <div class="mono mono-2" aria-hidden="true">L</div>
+        <div>
+          <h3>Lea</h3>
+          <p class="role">Wimpern &amp; Brauen · Pediküre</p>
+          <p>Lea macht Lash- und Brow-Lifting, färbt und formt Brauen und übernimmt die Pediküre. Komm zum Lifting bitte ohne Mascara und halte die Wimpern danach 24 Stunden trocken.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="termin">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Termin</p>
+      <h2>Termin anfragen</h2>
+      <p>Schick uns deinen Wunsch. Wir bestätigen per SMS oder Anruf, meistens noch am selben Tag.</p>
+    </div>
+    <div class="book">
+      <form class="req" id="req">
+        <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="f-tel">Telefon</label><input id="f-tel" name="tel" type="tel" autocomplete="tel" required></div>
+        <div class="field full"><label for="f-service">Leistung</label><select id="f-service" name="service"></select></div>
+        <div class="field"><label for="f-date">Wunschtag</label><input id="f-date" name="date" type="date"></div>
+        <div class="field"><label for="f-time">Tageszeit</label>
+          <select id="f-time" name="time">
+            <option>egal</option>
+            <option>vormittags (10–13 Uhr)</option>
+            <option>nachmittags (13–16 Uhr)</option>
+            <option>spät (16–19 Uhr, do bis 20 Uhr)</option>
+          </select>
+        </div>
+        <div class="field full"><label for="f-design">Wunschdesign</label><input id="f-design" name="design" placeholder="z. B. Mandel · Nr. 07 Kirschlack · Glanz"></div>
+        <div class="field full"><label for="f-msg">Nachricht <span class="small">(optional)</span></label><textarea id="f-msg" name="msg" placeholder="Allergien, Länge, Fragen …"></textarea></div>
+        <div class="form-foot">
+          <p class="small">Absage bis 24 Stunden vorher kostenlos.</p>
+          <button class="btn" type="submit">Anfrage senden</button>
+        </div>
+        <div class="done" id="done" role="status" hidden></div>
+      </form>
+
+      <aside class="info">
+        <div>
+          <h3>Adresse</h3>
+          <p>Bahrenfelder Straße 112<br>22765 Hamburg-Ottensen</p>
+          <p class="small">Hinterhaus, 1. Stock, Klingel „Feinschliff“.</p>
+        </div>
+        <div>
+          <h3>Telefon &amp; WhatsApp</h3>
+          <div class="copy-row"><span class="phone" id="phone">040 66969 112</span><button class="btn btn-ghost btn-small" id="copy" type="button">Nummer kopieren</button></div>
+        </div>
+        <div>
+          <h3>Öffnungszeiten</h3>
+          <table class="hours">
+            <tbody>
+              <tr data-day="1"><td>Montag</td><td>geschlossen</td></tr>
+              <tr data-day="2"><td>Dienstag</td><td>10 – 19 Uhr</td></tr>
+              <tr data-day="3"><td>Mittwoch</td><td>10 – 19 Uhr</td></tr>
+              <tr data-day="4"><td>Donnerstag</td><td>10 – 20 Uhr</td></tr>
+              <tr data-day="5"><td>Freitag</td><td>10 – 19 Uhr</td></tr>
+              <tr data-day="6"><td>Samstag</td><td>9 – 15 Uhr</td></tr>
+              <tr data-day="0"><td>Sonntag</td><td>geschlossen</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>Feinschliff Nagelstudio · Bahrenfelder Straße 112 · 22765 Hamburg</span>
+    <span><a href="../impressum/index.html">Impressum</a> · <a href="../datenschutz/index.html">Datenschutz</a></span>
+    <span>Demo-Website, alle Angaben sind Beispiele.</span>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const SHADES = [
+    { no: "01", name: "Milchglas",   hex: "#EFDFE3" },
+    { no: "04", name: "Puder",       hex: "#E2AFB9" },
+    { no: "07", name: "Kirschlack",  hex: "#A3123A" },
+    { no: "09", name: "Bordeaux",    hex: "#5A0E26" },
+    { no: "13", name: "Koralle",     hex: "#E0644F" },
+    { no: "18", name: "Flieder",     hex: "#B7A1D4" },
+    { no: "21", name: "Salbei",      hex: "#94A991" },
+    { no: "26", name: "Nachtblau",   hex: "#1F2A4D" },
+    { no: "30", name: "Mokka",       hex: "#6A4A3E" },
+    { no: "35", name: "Schwarzlack", hex: "#141014" }
+  ];
+  const SHAPE_NAMES = { mandel: "Mandel", oval: "Oval", eckig: "Eckig", ballerina: "Ballerina" };
+  const FINISH_NAMES = { glanz: "Glanz", matt: "Matt", french: "French" };
+
+  // Nagelformen: lokale Koordinaten, Spitze oben (y=0), Nagelhaut unten (y=L)
+  const cut = (w, L) => `L${w} ${L} Q${w / 2} ${L + w * 0.42} 0 ${L} Z`;
+  const SHAPES = {
+    mandel:    (w, L) => `M0 ${L} L${w*.03} ${w*1.05} C${w*.07} ${w*.42} ${w*.33} 0 ${w*.5} 0 C${w*.67} 0 ${w*.93} ${w*.42} ${w*.97} ${w*1.05} ${cut(w, L)}`,
+    oval:      (w, L) => `M0 ${L} L0 ${w*.55} C0 ${w*.12} ${w*.22} 0 ${w*.5} 0 C${w*.78} 0 ${w} ${w*.12} ${w} ${w*.55} ${cut(w, L)}`,
+    eckig:     (w, L) => `M0 ${L} L0 ${w*.12} Q0 0 ${w*.12} 0 L${w*.88} 0 Q${w} 0 ${w} ${w*.12} ${cut(w, L)}`,
+    ballerina: (w, L) => `M0 ${L} L${w*.16} ${w*.14} Q${w*.2} 0 ${w*.3} 0 L${w*.7} 0 Q${w*.8} 0 ${w*.84} ${w*.14} ${cut(w, L)}`
+  };
+  const TIPS = [
+    { w: 40, L: 118, r: -13 }, { w: 48, L: 134, r: -6.5 }, { w: 54, L: 146, r: 0 },
+    { w: 48, L: 134, r: 6.5 }, { w: 40, L: 118, r: 13 }
+  ];
+
+  const state = { shape: "mandel", shade: "07", finish: "glanz" };
+  const svg = document.getElementById("tips");
+  const label = document.getElementById("studio-label");
+  const shadeNo = document.getElementById("shade-no");
+
+  function draw() {
+    const shape = SHAPES[state.shape];
+    const french = state.finish === "french";
+    let defs = `<defs>
+      <linearGradient id="g-depth" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0" stop-color="#000" stop-opacity=".24"/><stop offset=".3" stop-color="#000" stop-opacity="0"/>
+        <stop offset=".7" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".28"/>
+      </linearGradient>
+      <linearGradient id="g-shine" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#fff" stop-opacity=".08"/>
+      </linearGradient>`;
+    let body = "";
+    TIPS.forEach((t, i) => {
+      const d = shape(t.w, t.L);
+      const cx = 210 + (i - 2) * 74;
+      const by = 204 + Math.abs(i - 2) * 9;
+      defs += `<clipPath id="clip${i}"><path d="${d}"/></clipPath>`;
+      body += `<g transform="translate(${cx} ${by}) rotate(${t.r}) translate(${-t.w / 2} ${-t.L})">`;
+      body += `<path d="${d}" class="${french ? "base-french" : "polish"}"/>`;
+      body += `<g clip-path="url(#clip${i})">`;
+      if (french) body += `<path class="polish" d="M-4 -4 H${t.w + 4} V${t.L * .33} Q${t.w / 2} ${t.L * .02} -4 ${t.L * .33} Z"/>`;
+      body += `<rect x="-2" y="-2" width="${t.w + 4}" height="${t.L + t.w}" fill="url(#g-depth)"/>`;
+      if (state.finish === "matt") {
+        body += `<rect x="-2" y="-2" width="${t.w + 4}" height="${t.L + t.w}" fill="#fff" opacity=".07"/>`;
+      } else {
+        body += `<path d="M${t.w * .27} ${t.w * .7} Q${t.w * .19} ${t.L * .5} ${t.w * .28} ${t.L * .86}" fill="none" stroke="url(#g-shine)" stroke-width="${t.w * .1}" stroke-linecap="round"/>`;
+        body += `<ellipse cx="${t.w * .7}" cy="${t.L * .24}" rx="${t.w * .05}" ry="${t.w * .12}" fill="#fff" opacity=".35"/>`;
+      }
+      body += `</g><path d="${d}" fill="none" stroke="#000" stroke-opacity=".16" stroke-width="1"/></g>`;
+    });
+    svg.innerHTML = defs + "</defs>" + body;
+    paint();
+  }
+
+  function current() { return SHADES.find(s => s.no === state.shade); }
+  function designText() {
+    const s = current();
+    return `${SHAPE_NAMES[state.shape]} · Nr. ${s.no} ${s.name} · ${FINISH_NAMES[state.finish]}`;
+  }
+  function paint() {
+    const s = current();
+    svg.style.setProperty("--polish", s.hex);
+    shadeNo.textContent = "Nr. " + s.no;
+    label.textContent = `${SHAPE_NAMES[state.shape]} · ${s.name} · ${FINISH_NAMES[state.finish]}`;
+    svg.setAttribute("aria-label", `Fünf Nagel-Tips, Form ${SHAPE_NAMES[state.shape]}, Farbe ${s.name}, Finish ${FINISH_NAMES[state.finish]}`);
+  }
+
+  // Farbkarte aufbauen
+  const sw = document.getElementById("swatches");
+  sw.innerHTML = SHADES.map(s => `
+    <label class="sw" title="Nr. ${s.no} ${s.name}">
+      <input type="radio" name="shade" value="${s.no}" id="shade-${s.no}" ${s.no === state.shade ? "checked" : ""} aria-label="Nr. ${s.no} ${s.name}">
+      <span style="--c:${s.hex}"></span>
+    </label>`).join("");
+
+  document.querySelector(".studio").addEventListener("change", e => {
+    const t = e.target;
+    if (t.name === "shade") { state.shade = t.value; paint(); }
+    if (t.name === "shape") { state.shape = t.value; draw(); }
+    if (t.name === "finish") { state.finish = t.value; draw(); }
+  });
+  draw();
+
+  // Formular
+  const service = document.getElementById("f-service");
+  const names = [...document.querySelectorAll(".plist .nm")].map(n => n.textContent);
+  service.innerHTML = names.map(n => `<option>${n}</option>`).join("");
+  service.value = "Maniküre mit Gel-Lack";
+
+  const date = document.getElementById("f-date");
+  const iso = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+  date.min = iso;
+
+  const designField = document.getElementById("f-design");
+  document.getElementById("use-design").addEventListener("click", () => {
+    designField.value = designText();
+    if (!/Gel|Nail Art|Neumodellage/.test(service.value)) service.value = "Maniküre mit Gel-Lack";
+  });
+
+  const form = document.getElementById("req");
+  const done = document.getElementById("done");
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const name = document.getElementById("f-name").value.trim().split(" ")[0];
+    let when = "";
+    if (date.value) {
+      const d = new Date(date.value + "T12:00:00");
+      when = " am " + d.toLocaleDateString("de-DE", { weekday: "long", day: "numeric", month: "long" });
+    }
+    done.innerHTML = `<strong>Danke, ${escapeHtml(name)}!</strong>Deine Anfrage für ${escapeHtml(service.value)}${when} ist notiert. Diese Demo verschickt nichts. Auf der fertigen Website landet die Anfrage direkt im Studio-Postfach.`;
+    done.hidden = false;
+  });
+  function escapeHtml(s) { return s.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
+
+  // Telefonnummer kopieren
+  const copyBtn = document.getElementById("copy");
+  copyBtn.addEventListener("click", () => {
+    const text = document.getElementById("phone").textContent;
+    const ok = () => { copyBtn.textContent = "Kopiert"; setTimeout(() => copyBtn.textContent = "Nummer kopieren", 1800); };
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(document.getElementById("phone")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); copyBtn.textContent = "Markiert, jetzt kopieren"; };
+    try { navigator.clipboard.writeText(text).then(ok, fallback); } catch (_) { fallback(); }
+  });
+
+  // Heutigen Tag in den Öffnungszeiten markieren (Hamburger Zeit)
+  try {
+    const wd = new Intl.DateTimeFormat("en-US", { timeZone: "Europe/Berlin", weekday: "short" }).format(new Date());
+    const idx = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(wd);
+    const row = document.querySelector(`.hours tr[data-day="${idx}"]`);
+    if (row) row.classList.add("today");
+  } catch (_) {}
+})();
+</script>
+</body>
+</html>

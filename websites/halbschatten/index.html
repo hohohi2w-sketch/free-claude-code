@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Halbschatten Fotografie</title>
+<meta name="description" content="Halbschatten – Porträt-, Hochzeits- und Businessfotografie in München.">
+<link rel="stylesheet" href="../fonts/halbschatten.css">
+<style>
+/* Layout: Hero mit Sucherbild (Fokusrahmen, Belichtungsdaten), dann Kontaktbogen mit Filmrand und Filter,
+   Pakete, Ablauf als Zeitachse, Über mich, Kontakt. Barytpapier-Grau, Cyanotypie-Blau als einziger Akzent. */
+:root{
+  --bg:#ECEBE7;
+  --surface:#F6F5F2;
+  --ink:#161616;
+  --muted:#5E5D58;
+  --line:#D3D1CB;
+  --accent:#23407E;
+  --on-accent:#F6F5F2;
+  --film:#141312;
+  --edge:#E3A44C;
+  --on-photo:#FFFFFF;
+  --af:#7CF29A;
+  --display:"Syne","Arial Black",system-ui,sans-serif;
+  --sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  --gutter:clamp(16px,4vw,48px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121314;--surface:#1A1B1D;--ink:#ECEBE7;--muted:#9D9C96;--line:#2F3033;--accent:#9DB4F0;--on-accent:#121314;--film:#060606;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121314;--surface:#1A1B1D;--ink:#ECEBE7;--muted:#9D9C96;--line:#2F3033;--accent:#9DB4F0;--on-accent:#121314;--film:#060606;color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin-inline:auto;padding-left:max(var(--gutter),env(safe-area-inset-left,0px));padding-right:max(var(--gutter),env(safe-area-inset-right,0px))}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.02;letter-spacing:-.025em;text-wrap:balance;margin:0}
+p{margin:0}
+.eyebrow{font-family:var(--mono);font-size:.76rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* Kopf */
+.top-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:20px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:800;font-size:1.15rem;letter-spacing:.06em;text-transform:uppercase}
+.brand svg{width:26px;height:26px;flex:none}
+.nav{display:flex;align-items:center;gap:clamp(14px,2.4vw,30px);font-weight:500;font-size:.95rem}
+.nav a:not(.btn){text-decoration:none;color:var(--muted)}
+.nav a:not(.btn):hover{color:var(--ink)}
+@media (max-width:720px){.nav a:not(.btn){display:none}}
+@media (max-width:440px){.brand{font-size:.9rem;letter-spacing:.02em;gap:8px}.brand svg{width:22px;height:22px}}
+
+.btn{font:inherit;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1.4rem;border-radius:4px;background:var(--ink);color:var(--bg);font-weight:600;text-decoration:none;border:1.5px solid var(--ink);cursor:pointer;transition:transform .15s ease,background-color .2s,color .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--ink)}
+.btn-small{padding:.55rem 1rem;font-size:.9rem}
+
+/* Hero */
+.hero-in{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,5vw,72px);align-items:center;padding-block:clamp(16px,3vw,40px) clamp(64px,9vw,120px)}
+@media (max-width:900px){.hero-in{grid-template-columns:minmax(0,1fr)}}
+.hero h1{font-size:clamp(2.6rem,5.6vw,4.9rem);margin-block:18px 26px}
+.hero h1 span{color:var(--accent)}
+.lead{font-size:clamp(1.05rem,1.5vw,1.2rem);max-width:31em;color:var(--ink)}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:44px 0 0;padding-top:18px;border-top:1px solid var(--line);max-width:31em}
+.facts dt{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.facts dd{margin:4px 0 0;font-weight:600;line-height:1.3}
+
+.viewer{position:relative;margin:0;border-radius:6px;overflow:hidden;background:var(--film);aspect-ratio:4/5;max-width:100%;max-height:86vh;justify-self:end;width:100%}
+@media (max-width:900px){.viewer{justify-self:stretch;max-height:none}}
+.viewer canvas{display:block;width:100%;height:100%;animation:focus 1.5s cubic-bezier(.2,.7,.2,1) .15s both}
+@keyframes focus{from{filter:blur(16px) saturate(.75)}to{filter:none}}
+.vf{position:absolute;inset:0;pointer-events:none;color:var(--on-photo)}
+.vf .c{position:absolute;width:26px;height:26px;border:2px solid currentColor;opacity:.9}
+.vf .tl{top:18px;left:18px;border-right:0;border-bottom:0}
+.vf .tr{top:18px;right:18px;border-left:0;border-bottom:0}
+.vf .bl{bottom:58px;left:18px;border-right:0;border-top:0}
+.vf .br{bottom:58px;right:18px;border-left:0;border-top:0}
+.vf .af{position:absolute;left:55%;top:40%;width:60px;height:46px;border:1.5px solid currentColor;transform:translate(-50%,-50%);animation:af 1.7s steps(1) both}
+@keyframes af{0%{border-color:var(--on-photo)}88%,100%{border-color:var(--af)}}
+.vf .data{position:absolute;left:0;right:0;bottom:0;display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;padding:14px 18px;font-family:var(--mono);font-size:.78rem;letter-spacing:.04em;background:linear-gradient(transparent,rgb(0 0 0 / .62))}
+.vf .data span:last-child{opacity:.75}
+.vf .rec{position:absolute;top:22px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;opacity:.85}
+
+/* Bänder */
+.band{padding-block:clamp(64px,9vw,120px)}
+.band-alt{background:var(--surface);border-block:1px solid var(--line)}
+.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:18px 40px;margin-bottom:clamp(32px,5vw,56px)}
+.sec-head > div:first-child{display:grid;gap:12px;max-width:40em}
+.sec-head h2{font-size:clamp(2.1rem,4.6vw,3.6rem)}
+.sec-head p:not(.eyebrow){color:var(--muted);font-size:1.05rem;max-width:30em}
+
+/* Kontaktbogen */
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters button{font:inherit;font-family:var(--mono);font-size:.8rem;letter-spacing:.04em;padding:.45rem .9rem;border-radius:999px;border:1.5px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.filters button:hover{border-color:var(--ink)}
+.filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.sheet{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.6vw,32px)}
+@media (max-width:900px){.sheet{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:540px){.sheet{grid-template-columns:minmax(0,1fr)}}
+.shot{display:grid;gap:12px;align-content:start}
+.frame{font:inherit;display:block;width:100%;padding:24px 9px 22px;border:0;border-radius:3px;background:var(--film);cursor:zoom-in;position:relative;color:var(--edge)}
+.frame::after{content:"";position:absolute;left:9px;right:9px;bottom:7px;height:7px;background-image:repeating-linear-gradient(to right,rgb(255 255 255 / .82) 0 8px,transparent 8px 17px);border-radius:1px;opacity:.85}
+.frame canvas{display:block;width:100%;aspect-ratio:4/5;max-width:100%;transition:filter .25s}
+.frame:hover canvas{filter:brightness(1.06)}
+.frame .fn,.frame .stock{position:absolute;top:6px;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;line-height:1}
+.frame .fn{left:12px}
+.frame .stock{right:12px}
+.shot figcaption{display:grid;gap:2px}
+.shot .ttl{font-weight:600}
+.shot .meta{font-size:.9rem;color:var(--muted)}
+.shot .exif{font-family:var(--mono);font-size:.74rem;color:var(--muted);letter-spacing:.02em}
+
+/* Pakete */
+.packs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.5vw,28px)}
+@media (max-width:900px){.packs{grid-template-columns:minmax(0,1fr)}}
+.pack{display:grid;gap:18px;align-content:start;padding:clamp(22px,3vw,32px);border:1px solid var(--line);border-radius:6px;background:var(--bg)}
+.pack h3{font-size:1.7rem}
+.price{font-family:var(--display);font-weight:700;font-size:2.4rem;letter-spacing:-.03em;color:var(--accent);line-height:1}
+.price small{font-family:var(--sans);font-size:.95rem;font-weight:500;letter-spacing:0;color:var(--muted)}
+.pack ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.pack li{padding-block:10px;border-bottom:1px solid var(--line);font-size:.96rem}
+.pnote{margin-top:28px;color:var(--muted);font-size:.93rem}
+
+/* Ablauf */
+.timeline{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(18px,3vw,36px);position:relative}
+.timeline li{display:grid;gap:10px;align-content:start;padding-top:30px;position:relative}
+.timeline li::before{content:"";position:absolute;top:0;left:0;right:calc(-1 * clamp(18px,3vw,36px));height:1.5px;background:var(--ink)}
+.timeline li:last-child::before{right:0}
+.timeline li::after{content:"";position:absolute;top:-6px;left:0;width:13px;height:13px;border-radius:50%;background:var(--bg);border:2px solid var(--ink)}
+.timeline li:first-child::after{background:var(--ink)}
+.timeline .when{font-family:var(--mono);font-size:.78rem;letter-spacing:.04em;color:var(--accent)}
+.timeline h3{font-size:1.45rem}
+.timeline p{color:var(--muted)}
+@media (max-width:900px){
+  .timeline{grid-template-columns:minmax(0,1fr);gap:0}
+  .timeline li{padding:0 0 30px 34px}
+  .timeline li::before{top:6px;bottom:0;left:5.5px;right:auto;width:1.5px;height:auto}
+  .timeline li:last-child::before{display:none}
+  .timeline li::after{top:0}
+}
+
+/* Über mich */
+.about{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,5vw,72px);align-items:start}
+@media (max-width:900px){.about{grid-template-columns:minmax(0,1fr)}}
+.self{margin:0;display:grid;gap:10px}
+.self canvas{display:block;width:100%;aspect-ratio:4/5;max-width:100%;border-radius:6px;background:var(--film)}
+.self figcaption{font-family:var(--mono);font-size:.74rem;color:var(--muted)}
+.about-text{display:grid;gap:18px;max-width:38em}
+.about-text h2{font-size:clamp(2rem,4vw,3.2rem)}
+.about-text > p{font-size:1.08rem}
+.gear{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 22px;margin:8px 0 0;padding-top:18px;border-top:1px solid var(--line);font-size:.92rem}
+.gear dt{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-top:2px}
+.gear dd{margin:0}
+@media (max-width:480px){.gear{grid-template-columns:minmax(0,1fr);gap:2px}.gear dd{margin-bottom:10px}}
+.promise{padding:18px 20px;border-left:3px solid var(--accent);background:var(--surface)}
+
+/* Kontakt */
+.contact{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:clamp(28px,4vw,56px);align-items:start}
+@media (max-width:900px){.contact{grid-template-columns:minmax(0,1fr)}}
+.req{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;padding:clamp(20px,3vw,32px);background:var(--surface);border:1px solid var(--line);border-radius:6px}
+@media (max-width:560px){.req{grid-template-columns:minmax(0,1fr)}}
+.field{display:grid;gap:6px;min-width:0}
+.field.full{grid-column:1/-1}
+.field label{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:4px;padding:.72rem .85rem;width:100%;min-width:0}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 22%,transparent)}
+textarea{min-height:120px;resize:vertical}
+.form-foot{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px}
+.small{font-size:.86rem;color:var(--muted)}
+.done{grid-column:1/-1;padding:16px 18px;border-radius:4px;border:1px solid var(--accent);background:color-mix(in srgb,var(--accent) 9%,var(--surface))}
+.done strong{display:block;font-family:var(--display);font-size:1.2rem;margin-bottom:4px}
+.cinfo{display:grid;gap:26px}
+.cinfo h3{font-size:1.2rem;margin-bottom:6px}
+.big{font-family:var(--display);font-weight:700;font-size:1.6rem;letter-spacing:-.02em;user-select:all;font-variant-numeric:tabular-nums}
+
+/* Lightbox */
+dialog{border:0;padding:0;background:var(--bg);color:var(--ink);border-radius:6px;max-width:calc(100vw - 24px);max-height:calc(100vh - 24px);overflow:auto}
+dialog::backdrop{background:rgb(0 0 0 / .82)}
+.lb-in{display:grid;gap:14px;padding:14px}
+.lb-in canvas{display:block;max-width:100%;border-radius:3px;margin-inline:auto}
+.lb-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px}
+.lb-cap{display:grid;gap:2px;min-width:0}
+.lb-cap .t{font-weight:600}
+.lb-cap .e{font-family:var(--mono);font-size:.76rem;color:var(--muted)}
+.lb-nav{display:flex;gap:8px}
+
+footer{border-top:1px solid var(--line)}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 28px;padding-block:28px;font-size:.88rem;color:var(--muted)}
+
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="#start" aria-label="Halbschatten Fotografie, zum Anfang">
+      <svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="11" fill="none" stroke="currentColor" stroke-width="2"/><path d="M13 2a11 11 0 0 1 0 22z" fill="currentColor"/></svg>
+      Halbschatten
+    </a>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="#arbeiten">Arbeiten</a>
+      <a href="#pakete">Pakete</a>
+      <a href="#ueber-mich">Über mich</a>
+      <a class="btn btn-small" href="#kontakt">Anfragen</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="start">
+  <div class="wrap hero-in">
+    <div>
+      <p class="eyebrow">Fotografie · München und Umgebung</p>
+      <h1>Fotos, auf denen du aussiehst <span>wie du.</span></h1>
+      <p class="lead">Ich bin Ronja und fotografiere Porträts, Hochzeiten und Teams. Mit vorhandenem Licht, ruhiger Anleitung und genug Zeit, dass du die Kamera irgendwann vergisst.</p>
+      <div class="actions">
+        <a class="btn" href="#kontakt">Shooting anfragen</a>
+        <a class="btn btn-ghost" href="#arbeiten">Arbeiten ansehen</a>
+      </div>
+      <dl class="facts">
+        <div><dt>Antwort</dt><dd>innerhalb von 48 Std.</dd></div>
+        <div><dt>Galerie</dt><dd>nach 3 Wochen</dd></div>
+        <div><dt>Anfahrt</dt><dd>bis 100 km inklusive</dd></div>
+      </dl>
+    </div>
+    <figure class="viewer">
+      <canvas id="hero-canvas" role="img" aria-label="Fensterlicht mit Blätterschatten auf einer warmen Atelierwand"></canvas>
+      <div class="vf" aria-hidden="true">
+        <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
+        <span class="af"></span>
+        <span class="rec">● AF-S</span>
+        <div class="data"><span>35 mm&nbsp;&nbsp;ƒ/2,0&nbsp;&nbsp;1/250 s&nbsp;&nbsp;ISO 400</span><span>Lichtstudie, Atelier · 24/36</span></div>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section class="band band-alt" id="arbeiten">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Kontaktbogen</p>
+        <h2>Ausgewählte Arbeiten</h2>
+      </div>
+      <div class="filters" id="filters" role="group" aria-label="Arbeiten filtern">
+        <button type="button" data-cat="alle" aria-pressed="true">Alle</button>
+        <button type="button" data-cat="portrait" aria-pressed="false">Porträt</button>
+        <button type="button" data-cat="hochzeit" aria-pressed="false">Hochzeit</button>
+        <button type="button" data-cat="business" aria-pressed="false">Business</button>
+        <button type="button" data-cat="draussen" aria-pressed="false">Draußen</button>
+      </div>
+    </div>
+    <ul class="sheet" id="sheet"></ul>
+  </div>
+</section>
+
+<section class="band" id="pakete">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Pakete &amp; Preise</p>
+        <h2>Klare Preise, keine Überraschungen</h2>
+      </div>
+      <p>Jedes Shooting beginnt mit einem kostenlosen Vorgespräch. Danach bekommst du ein festes Angebot.</p>
+    </div>
+    <div class="packs">
+      <article class="pack">
+        <h3>Porträt</h3>
+        <p class="price">290 € <small>pro Session</small></p>
+        <ul>
+          <li>90 Minuten, eine Location deiner Wahl</li>
+          <li>25 bearbeitete Bilder, weitere je 9 €</li>
+          <li>Online-Galerie zum Teilen und Herunterladen</li>
+          <li>Private Nutzung und Social Media</li>
+        </ul>
+      </article>
+      <article class="pack">
+        <h3>Business</h3>
+        <p class="price">ab 590 € <small>halber Tag</small></p>
+        <ul>
+          <li>Bei euch vor Ort, bis acht Personen</li>
+          <li>Einheitlicher Look für das ganze Team</li>
+          <li>Bilder in Web- und Druckauflösung</li>
+          <li>Nutzung für Website, Presse und LinkedIn</li>
+        </ul>
+      </article>
+      <article class="pack">
+        <h3>Hochzeit</h3>
+        <p class="price">ab 1.290 € <small>Standesamt</small></p>
+        <ul>
+          <li>Standesamt, 3 Stunden: 1.290 €</li>
+          <li>Ganzer Tag, 10 Stunden: 2.890 €</li>
+          <li>Vorgespräch und gemeinsamer Location-Besuch</li>
+          <li>Alle gelungenen Bilder, meistens 400 bis 700</li>
+        </ul>
+      </article>
+    </div>
+    <p class="pnote">Alle Preise inklusive 19 % MwSt. Anfahrt bis 100 km ab München ist inklusive, darüber berechne ich 0,40 € pro Kilometer.</p>
+  </div>
+</section>
+
+<section class="band band-alt" id="ablauf">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Ablauf</p>
+        <h2>Vom ersten Anruf bis zur Galerie</h2>
+      </div>
+    </div>
+    <ol class="timeline">
+      <li><p class="when">ein paar Wochen vorher</p><h3>Vorgespräch</h3><p>15 Minuten am Telefon oder bei einem Kaffee. Wir klären Ort, Licht, Kleidung und wofür die Bilder gedacht sind.</p></li>
+      <li><p class="when">der Tag</p><h3>Shooting</h3><p>Ich sage dir, wohin mit den Händen, und dann reden wir einfach. Die besten Bilder entstehen meistens zwischen zwei Posen.</p></li>
+      <li><p class="when">+ 2 Tage</p><h3>Vorschau</h3><p>Fünf Lieblingsbilder vorab, damit du nicht drei Wochen warten musst.</p></li>
+      <li><p class="when">+ 3 Wochen</p><h3>Galerie</h3><p>Alle bearbeiteten Bilder in einer Online-Galerie, hochauflösend und ohne Wasserzeichen.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="band" id="ueber-mich">
+  <div class="wrap about">
+    <figure class="self">
+      <canvas id="self-canvas" role="img" aria-label="Selbstporträt als Silhouette im Gegenlicht"></canvas>
+      <figcaption>Selbstporträt im Gegenlicht · 50 mm · ƒ/1,4 · 1/500 s · ISO 100</figcaption>
+    </figure>
+    <div class="about-text">
+      <p class="eyebrow">Über mich</p>
+      <h2>Ronja, Fotografin seit 2015</h2>
+      <p>Ich habe in Augsburg Kommunikationsdesign studiert und danach vier Jahre als Assistentin in einem Porträtstudio gearbeitet. Seit 2019 fotografiere ich selbstständig, am liebsten bei Fensterlicht oder in der letzten Stunde vor Sonnenuntergang.</p>
+      <p>Die meisten Menschen, die zu mir kommen, sagen als Erstes: „Ich bin total unfotogen.“ Nach zwanzig Minuten haben sie das meistens vergessen.</p>
+      <dl class="gear">
+        <dt>Kameras</dt><dd>zwei spiegellose Vollformat-Gehäuse</dd>
+        <dt>Objektive</dt><dd class="mono">35 mm ƒ/1,4 · 50 mm ƒ/1,2 · 85 mm ƒ/1,8</dd>
+        <dt>Licht</dt><dd>Fenster, Reflektor, notfalls ein Blitz</dd>
+        <dt>Sprachen</dt><dd>Deutsch, Englisch, ein bisschen Italienisch</dd>
+      </dl>
+      <p class="promise">Bei der Retusche bleibt dein Gesicht dein Gesicht. Ein Pickel darf weg, Falten und Körperform bleiben, wie sie sind.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band band-alt" id="kontakt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Kontakt</p>
+        <h2>Erzähl mir von deiner Idee</h2>
+      </div>
+      <p>Ein paar Sätze reichen. Ich melde mich innerhalb von 48 Stunden mit Terminvorschlägen.</p>
+    </div>
+    <div class="contact">
+      <form class="req" id="req">
+        <div class="field"><label for="f-name">Name</label><input id="f-name" autocomplete="name" required></div>
+        <div class="field"><label for="f-mail">E-Mail</label><input id="f-mail" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="f-kind">Art des Shootings</label>
+          <select id="f-kind"><option>Porträt</option><option>Business</option><option>Hochzeit</option><option>Etwas anderes</option></select>
+        </div>
+        <div class="field"><label for="f-date">Wunschtermin</label><input id="f-date" type="date"></div>
+        <div class="field full"><label for="f-place">Ort</label><input id="f-place" placeholder="z. B. Englischer Garten, bei uns im Büro, noch offen"></div>
+        <div class="field full"><label for="f-msg">Deine Idee</label><textarea id="f-msg" placeholder="Wofür sind die Bilder? Wie viele Personen? Gibt es einen Stil, der dir gefällt?"></textarea></div>
+        <div class="form-foot">
+          <p class="small">Das Vorgespräch ist kostenlos und unverbindlich.</p>
+          <button class="btn" type="submit">Anfrage senden</button>
+        </div>
+        <div class="done" id="done" role="status" hidden></div>
+      </form>
+      <aside class="cinfo">
+        <div><h3>Telefon</h3><p class="big">089 99998 214</p><p class="small">Mo – Fr, 10 – 17 Uhr. Sonst gern eine Nachricht.</p></div>
+        <div><h3>Studio</h3><p>Tumblingerstraße 18<br>80337 München</p><p class="small">Nur nach Termin. Die meisten Shootings finden draußen oder bei dir statt.</p></div>
+        <div><h3>Gerade frei</h3><p>Porträts ab nächster Woche. Hochzeiten 2027 noch an einzelnen Samstagen im Mai, Juli und September.</p></div>
+      </aside>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>Halbschatten Fotografie · Tumblingerstraße 18 · 80337 München</span>
+    <span><a href="../impressum/index.html">Impressum</a> · <a href="../datenschutz/index.html">Datenschutz</a></span>
+    <span>Demo-Website, alle Bilder sind generierte Platzhalter.</span>
+  </div>
+</footer>
+
+<dialog id="lb" aria-labelledby="lb-title">
+  <div class="lb-in">
+    <canvas id="lb-canvas" role="img"></canvas>
+    <div class="lb-bar">
+      <div class="lb-cap"><span class="t" id="lb-title"></span><span class="e" id="lb-exif"></span></div>
+      <div class="lb-nav">
+        <button class="btn btn-ghost btn-small" type="button" id="lb-prev" aria-label="Vorheriges Bild">←</button>
+        <button class="btn btn-ghost btn-small" type="button" id="lb-next" aria-label="Nächstes Bild">→</button>
+        <button class="btn btn-small" type="button" id="lb-close">Schließen</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+(() => {
+  /* ---------- Bildgenerator: weiches Licht per Schatten-Trick, Filmkorn, Vignette ---------- */
+  const hex = h => [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)];
+  const rgba = (c, a) => `rgba(${c[0]},${c[1]},${c[2]},${a})`;
+  const mix = (a, b, t) => a.map((v, i) => Math.round(v + (b[i] - v) * t));
+  const rng = seed => { let a = seed >>> 0; return () => { a = (a + 0x6D2B79F5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; };
+  const layer = (W, H) => { const c = document.createElement("canvas"); c.width = W; c.height = H; return c; };
+
+  function soft(ctx, blur, color, path, mode) {
+    const off = ctx.canvas.width * 3;
+    ctx.save();
+    ctx.shadowColor = color; ctx.shadowBlur = blur; ctx.shadowOffsetX = off; ctx.shadowOffsetY = 0;
+    ctx.translate(-off, 0);
+    ctx.fillStyle = ctx.strokeStyle = "#000";
+    ctx.beginPath(); path(ctx);
+    mode === "stroke" ? ctx.stroke() : ctx.fill();
+    ctx.restore();
+  }
+  function grain(ctx, W, H, amt, mono) {
+    const img = ctx.getImageData(0, 0, W, H), d = img.data;
+    let s = 12345;
+    for (let i = 0; i < d.length; i += 4) {
+      s = (Math.imul(s, 1103515245) + 12345) | 0;
+      const n = ((((s >>> 16) & 0x7fff) / 32768) - .5) * amt;
+      if (mono) { const y = d[i] * .3 + d[i + 1] * .59 + d[i + 2] * .11 + n; d[i] = d[i + 1] = d[i + 2] = y; }
+      else { d[i] += n; d[i + 1] += n; d[i + 2] += n; }
+    }
+    ctx.putImageData(img, 0, 0);
+  }
+  function finish(ctx, W, H, p) {
+    if (p.tint) { ctx.globalCompositeOperation = "soft-light"; ctx.fillStyle = p.tint; ctx.fillRect(0, 0, W, H); ctx.globalCompositeOperation = "source-over"; }
+    const g = ctx.createRadialGradient(W / 2, H / 2, Math.min(W, H) * .22, W / 2, H / 2, Math.hypot(W, H) * .62);
+    g.addColorStop(0, "rgba(0,0,0,0)"); g.addColorStop(1, `rgba(0,0,0,${p.vig ?? .45})`);
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+    grain(ctx, W, H, p.grain ?? 22, p.mono);
+  }
+  function figure(c, W, H, f) {
+    const s = W * f.s, cx = W * f.x, hy = H * f.hy, sy = hy + s * .27, bottom = H + 20;
+    c.moveTo(cx + s * .12, hy);
+    c.ellipse(cx, hy, s * .12, s * .155, f.tilt || 0, 0, Math.PI * 2);
+    if (f.bun) { c.moveTo(cx + s * .13, hy - s * .15); c.arc(cx + s * .07, hy - s * .15, s * .065, 0, Math.PI * 2); }
+    c.rect(cx - s * .05, hy + s * .08, s * .1, s * .21);
+    c.moveTo(cx - s * .46, bottom);
+    c.bezierCurveTo(cx - s * .44, sy + s * .1, cx - s * .24, sy, cx - s * .06, sy - s * .01);
+    c.lineTo(cx + s * .06, sy - s * .01);
+    c.bezierCurveTo(cx + s * .24, sy, cx + s * .44, sy + s * .1, cx + s * .46, bottom);
+    c.closePath();
+  }
+  function people(ctx, W, H, p) {
+    if (!p.figs) return;
+    const u = Math.min(W, H);
+    const path = c => p.figs.forEach(f => figure(c, W, H, f));
+    soft(ctx, u * .035, p.rim, path);
+    soft(ctx, u * .004, p.figure, path);
+  }
+
+  const GEN = {
+    fenster(ctx, W, H, r, p) {
+      const u = Math.min(W, H);
+      const g = ctx.createLinearGradient(0, 0, W, H); g.addColorStop(0, p.wall[0]); g.addColorStop(1, p.wall[1]);
+      ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+      const L = layer(W, H), l = L.getContext("2d"), light = hex(p.light);
+      soft(l, u * .28, rgba(light, .32), c => c.ellipse(W * p.lx, H * p.ly, W * .34, H * .3, 0, 0, Math.PI * 2));
+      const pw = W * .2, ph = H * .23, gap = u * .024;
+      soft(l, u * .012, rgba(light, .95), c => {
+        c.transform(1, p.shy, p.shx, 1, W * p.wx, H * p.wy);
+        for (let i = 0; i < 2; i++) for (let j = 0; j < 2; j++) c.rect(i * (pw + gap), j * (ph + gap), pw, ph);
+      });
+      l.globalCompositeOperation = "destination-out";
+      const stems = 2 + Math.floor(r() * 2);
+      for (let s = 0; s < stems; s++) {
+        let x = W * (p.wx + .05 + r() * .3), y = H * (p.wy + .62 + r() * .15), a = -Math.PI / 2 + (r() - .5) * .9;
+        const b = u * (.004 + r() * .01);
+        for (let k = 0; k < 9; k++) {
+          const nx = x + Math.cos(a) * u * .06, ny = y + Math.sin(a) * u * .06;
+          const x0 = x, y0 = y;
+          soft(l, b, "rgba(0,0,0,.9)", c => { c.lineWidth = u * .006; c.moveTo(x0, y0); c.lineTo(nx, ny); }, "stroke");
+          x = nx; y = ny; a += (r() - .5) * .5;
+          const la = a + (k % 2 ? 1 : -1) * (.7 + r() * .4), len = u * (.04 + r() * .035);
+          const ex = x + Math.cos(la) * len * .9, ey = y + Math.sin(la) * len * .9;
+          soft(l, b * (.8 + r() * .7), "rgba(0,0,0,.88)", c => c.ellipse(ex, ey, len, len * .38, la, 0, Math.PI * 2));
+        }
+      }
+      l.globalCompositeOperation = "source-over";
+      ctx.globalCompositeOperation = "screen"; ctx.drawImage(L, 0, 0); ctx.globalCompositeOperation = "source-over";
+      people(ctx, W, H, p);
+      finish(ctx, W, H, p);
+    },
+    bokeh(ctx, W, H, r, p) {
+      const u = Math.min(W, H);
+      const g = ctx.createRadialGradient(W * .45, H * .4, 0, W * .45, H * .4, Math.hypot(W, H) * .7);
+      g.addColorStop(0, p.bg[0]); g.addColorStop(1, p.bg[1]); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+      ctx.globalCompositeOperation = "screen";
+      const lights = p.lights.map(hex);
+      for (let i = 0; i < p.n; i++) {
+        const t = r();
+        const x = W * (-.1 + 1.2 * t);
+        const y = H * (p.band[0] + (p.band[1] - p.band[0]) * t) + (r() - .5) * H * p.spread;
+        const rad = u * (.018 + Math.pow(r(), 2.2) * .1);
+        const c = lights[Math.floor(r() * lights.length)], a = .1 + r() * .4;
+        const gr = ctx.createRadialGradient(x, y, 0, x, y, rad);
+        gr.addColorStop(0, rgba(c, a * .5)); gr.addColorStop(.8, rgba(c, a * .75)); gr.addColorStop(.92, rgba(c, a)); gr.addColorStop(1, rgba(c, 0));
+        ctx.fillStyle = gr; ctx.beginPath(); ctx.arc(x, y, rad, 0, Math.PI * 2); ctx.fill();
+      }
+      for (let i = 0; i < 40; i++) {
+        const c = lights[Math.floor(r() * lights.length)];
+        ctx.fillStyle = rgba(c, .45 + r() * .4); ctx.beginPath();
+        ctx.arc(r() * W, H * (p.band[0] + r() * (p.band[1] - p.band[0])), u * (.002 + r() * .003), 0, Math.PI * 2); ctx.fill();
+      }
+      ctx.globalCompositeOperation = "source-over";
+      people(ctx, W, H, p);
+      finish(ctx, W, H, p);
+    },
+    silhouette(ctx, W, H, r, p) {
+      const u = Math.min(W, H);
+      const g = ctx.createRadialGradient(W * p.gx, H * p.gy, 0, W * p.gx, H * p.gy, Math.hypot(W, H) * .85);
+      p.glow.forEach((c, i) => g.addColorStop(i / (p.glow.length - 1), c));
+      ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+      soft(ctx, u * .05, p.frame, c => { c.rect(W * p.bar, -H * .1, W * .05, H * 1.2); c.rect(-W * .1, H * .27, W * 1.2, u * .035); });
+      people(ctx, W, H, p);
+      finish(ctx, W, H, p);
+    },
+    huegel(ctx, W, H, r, p) {
+      const u = Math.min(W, H);
+      const g = ctx.createLinearGradient(0, 0, 0, H * .75); g.addColorStop(0, p.sky[0]); g.addColorStop(1, p.sky[1]);
+      ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+      const sx = W * p.sun[0], sy = H * p.sun[1], sun = hex(p.sunc);
+      soft(ctx, u * .22, rgba(sun, .6), c => c.arc(sx, sy, u * .09, 0, Math.PI * 2));
+      ctx.fillStyle = rgba(sun, .92); ctx.beginPath(); ctx.arc(sx, sy, u * .045, 0, Math.PI * 2); ctx.fill();
+      const far = hex(p.far), near = hex(p.near), mist = hex(p.mist), N = 5;
+      for (let k = 0; k < N; k++) {
+        const t = k / (N - 1), base = H * (.5 + t * .35), amp = H * (.04 + t * .07);
+        const ph = [r() * 9, r() * 9, r() * 9, r() * 9], fr = 1.1 + r() * 1.4;
+        ctx.fillStyle = rgba(mix(far, near, Math.pow(t, 1.25)), 1);
+        ctx.beginPath(); ctx.moveTo(0, H);
+        for (let i = 0; i <= 180; i++) {
+          const x = i / 180;
+          const n = .5 * Math.sin(x * fr * 3 + ph[0]) + .28 * Math.sin(x * fr * 7.3 + ph[1]) + .14 * Math.sin(x * fr * 15.1 + ph[2]) + .08 * Math.sin(x * fr * 31 + ph[3]);
+          ctx.lineTo(x * W, base - amp * n);
+        }
+        ctx.lineTo(W, H); ctx.closePath(); ctx.fill();
+        if (k < N - 1) {
+          const mg = ctx.createLinearGradient(0, base - amp, 0, base + H * .09);
+          mg.addColorStop(0, rgba(mist, 0)); mg.addColorStop(.6, rgba(mist, .42 * (1 - t))); mg.addColorStop(1, rgba(mist, 0));
+          ctx.fillStyle = mg; ctx.fillRect(0, base - amp, W, amp + H * .09);
+        }
+      }
+      finish(ctx, W, H, p);
+    },
+    jalousie(ctx, W, H, r, p) {
+      const u = Math.min(W, H);
+      const g = ctx.createLinearGradient(0, 0, W, H * .7); g.addColorStop(0, p.wall[0]); g.addColorStop(1, p.wall[1]);
+      ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+      const L = layer(W, H), l = L.getContext("2d"), light = hex(p.light);
+      const tf = c => c.transform(1, p.shy, p.shx, 1, W * p.wx, H * p.wy);
+      soft(l, u * .02, rgba(light, .92), c => { tf(c); c.rect(0, 0, W * .6, H * .52); });
+      l.globalCompositeOperation = "destination-out";
+      soft(l, u * .004, "rgba(0,0,0,.95)", c => { tf(c); const sp = H * .042; for (let y = sp * .6; y < H * .52; y += sp) c.rect(-W * .05, y, W * .7, sp * .42); });
+      for (let i = 0; i < 6; i++) {
+        const a = -1 + r() * 1.1, x = W * (p.px + r() * .14), y = H * (p.py + r() * .16), len = u * (.07 + r() * .07);
+        soft(l, u * .02, "rgba(0,0,0,.85)", c => c.ellipse(x, y, len, len * .42, a, 0, Math.PI * 2));
+      }
+      l.globalCompositeOperation = "source-over";
+      ctx.globalCompositeOperation = "screen"; ctx.drawImage(L, 0, 0); ctx.globalCompositeOperation = "source-over";
+      if (p.desk) {
+        const dg = ctx.createLinearGradient(0, H * .8, 0, H); dg.addColorStop(0, p.desk[0]); dg.addColorStop(1, p.desk[1]);
+        ctx.fillStyle = dg; ctx.fillRect(0, H * .8, W, H * .2);
+        ctx.fillStyle = "rgba(255,255,255,.08)"; ctx.fillRect(0, H * .8, W, Math.max(1, u * .003));
+      }
+      people(ctx, W, H, p);
+      finish(ctx, W, H, p);
+    }
+  };
+
+  function render(canvas, photo, maxW) {
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    const cssW = canvas.clientWidth || 400;
+    const W = Math.round(Math.min(maxW, cssW * dpr)), H = Math.round(W * 5 / 4);
+    canvas.width = W; canvas.height = H;
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
+    GEN[photo.gen](ctx, W, H, rng(photo.seed), photo.p);
+  }
+
+  /* ---------- Bilder ---------- */
+  const HERO = { gen: "fenster", seed: 24, p: { wall: ["#D9B89B", "#77533F"], light: "#FFEBD0", lx: .45, ly: .38, wx: .2, wy: .1, shx: -.42, shy: .15, tint: "#FFA860", vig: .48, grain: 22 } };
+  const SELF = { gen: "silhouette", seed: 3, p: { glow: ["#FFF3DF", "#E9C9A6", "#4B3A33"], gx: .5, gy: .3, bar: .74, frame: "rgba(50,34,26,.5)", rim: "rgba(255,226,180,.9)", figure: "#1E1714", figs: [{ x: .5, s: .92, hy: .43, tilt: .06, bun: true }], vig: .45, grain: 24 } };
+  const PHOTOS = [
+    { cat: "portrait", catName: "Porträt", title: "Lena am Fenster", place: "Schwabing", gen: "silhouette", seed: 11, exif: "85 mm · ƒ/1,8 · 1/320 s · ISO 200",
+      p: { glow: ["#FFE9C7", "#E7B98A", "#5A3B2C"], gx: .64, gy: .3, bar: .72, frame: "rgba(40,24,16,.55)", rim: "rgba(255,214,160,.9)", figure: "#20140F", figs: [{ x: .44, s: .95, hy: .42, tilt: -.08, bun: true }], tint: "#FFB070", vig: .5, grain: 26 } },
+    { cat: "hochzeit", catName: "Hochzeit", title: "Lichterkette nach der Trauung", place: "Standesamt München", gen: "bokeh", seed: 5, exif: "50 mm · ƒ/1,2 · 1/125 s · ISO 1600",
+      p: { bg: ["#2C1B14", "#0B0706"], lights: ["#FFC56E", "#FF9F5A", "#FFE3A8"], n: 70, band: [.22, .62], spread: .35, vig: .55, grain: 30 } },
+    { cat: "business", catName: "Business", title: "Architekturbüro am Morgen", place: "Werksviertel", gen: "jalousie", seed: 8, exif: "35 mm · ƒ/4 · 1/200 s · ISO 400",
+      p: { wall: ["#BDB5AA", "#7B746B"], light: "#FFF1DA", wx: .16, wy: .06, shx: -.45, shy: .16, px: .5, py: .2, desk: ["#3B332C", "#1F1B17"], tint: "#E9C9A0", vig: .4, grain: 20 } },
+    { cat: "draussen", catName: "Draußen", title: "Morgennebel am Ammersee", place: "Herrsching", gen: "huegel", seed: 19, exif: "85 mm · ƒ/5,6 · 1/500 s · ISO 100",
+      p: { sky: ["#F1D4BE", "#F8ECE2"], sun: [.68, .36], sunc: "#FFF6E8", far: "#D8C4BB", near: "#3B3743", mist: "#F8EEE7", vig: .3, grain: 16 } },
+    { cat: "portrait", catName: "Porträt", title: "Jonas im Atelier", place: "Giesing", gen: "fenster", seed: 31, exif: "50 mm · ƒ/2 · 1/250 s · ISO 400",
+      p: { wall: ["#868F92", "#3B4245"], light: "#FFF6E6", lx: .42, ly: .4, wx: .24, wy: .12, shx: -.38, shy: .13, figs: [{ x: .62, s: .8, hy: .5, tilt: .1 }], rim: "rgba(255,255,255,.55)", figure: "#141617", mono: true, vig: .52, grain: 32 } },
+    { cat: "hochzeit", catName: "Hochzeit", title: "Der erste Tanz", place: "Gut Kerschlach", gen: "bokeh", seed: 42, exif: "35 mm · ƒ/1,4 · 1/160 s · ISO 3200",
+      p: { bg: ["#3A1E22", "#0D0608"], lights: ["#FF8A7A", "#FFC77D", "#FFE9C9"], n: 60, band: [.12, .45], spread: .3,
+           figs: [{ x: .41, s: .72, hy: .5, tilt: .2 }, { x: .6, s: .76, hy: .47, tilt: -.14, bun: true }], rim: "rgba(255,190,150,.85)", figure: "#120A0B", vig: .55, grain: 32 } },
+    { cat: "business", catName: "Business", title: "Gründerin, Teamporträt", place: "Glockenbachviertel", gen: "silhouette", seed: 7, exif: "50 mm · ƒ/2,8 · 1/250 s · ISO 200",
+      p: { glow: ["#EEF3F6", "#A9BBC6", "#2D3942"], gx: .3, gy: .3, bar: .16, frame: "rgba(20,30,38,.5)", rim: "rgba(220,236,255,.85)", figure: "#151B20", figs: [{ x: .57, s: .9, hy: .42, tilt: .05 }], tint: "#9FB8D0", vig: .45, grain: 22 } },
+    { cat: "draussen", catName: "Draußen", title: "Karwendel zur blauen Stunde", place: "Mittenwald", gen: "huegel", seed: 77, exif: "35 mm · ƒ/8 · 1/60 s · ISO 800",
+      p: { sky: ["#1C2848", "#9097B8"], sun: [.28, .5], sunc: "#FFE2BC", far: "#7D83A4", near: "#0E1322", mist: "#BCBFD8", vig: .45, grain: 20 } },
+    { cat: "portrait", catName: "Porträt", title: "Hilde, 91", place: "Haidhausen", gen: "fenster", seed: 58, exif: "35 mm · ƒ/2,8 · 1/160 s · ISO 800",
+      p: { wall: ["#CBAA8E", "#664A3A"], light: "#FFE2B8", lx: .58, ly: .45, wx: .36, wy: .14, shx: -.3, shy: .1, figs: [{ x: .36, s: .78, hy: .52, tilt: -.05, bun: true }], rim: "rgba(255,210,160,.7)", figure: "#24170F", tint: "#FF9F5A", vig: .5, grain: 24 } }
+  ];
+
+  const sheet = document.getElementById("sheet");
+  sheet.innerHTML = PHOTOS.map((ph, i) => `
+    <li class="shot" data-cat="${ph.cat}">
+      <figure style="margin:0;display:grid;gap:12px">
+        <button class="frame" type="button" data-i="${i}" aria-label="${ph.title} groß ansehen">
+          <span class="fn">▸ ${12 + i}</span><span class="stock">HALBSCHATTEN 400</span>
+          <canvas role="img" aria-label="${ph.title}, ${ph.place}"></canvas>
+        </button>
+        <figcaption><span class="ttl">${ph.title}</span><span class="meta">${ph.catName} · ${ph.place}</span><span class="exif">${ph.exif}</span></figcaption>
+      </figure>
+    </li>`).join("");
+
+  const heroCanvas = document.getElementById("hero-canvas");
+  const selfCanvas = document.getElementById("self-canvas");
+  const thumbs = [...sheet.querySelectorAll("canvas")];
+
+  function renderAll() {
+    render(heroCanvas, HERO, 1400);
+    const queue = [() => render(selfCanvas, SELF, 1000), ...thumbs.map((c, i) => () => render(c, PHOTOS[i], 900))];
+    const step = () => { const job = queue.shift(); if (!job) return; job(); setTimeout(step, 0); };
+    step();
+  }
+  renderAll();
+  let lastW = innerWidth, rt;
+  addEventListener("resize", () => {
+    clearTimeout(rt);
+    rt = setTimeout(() => { if (Math.abs(innerWidth - lastW) > 120) { lastW = innerWidth; renderAll(); } }, 250);
+  });
+
+  /* ---------- Filter ---------- */
+  const filters = document.getElementById("filters");
+  filters.addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    const cat = b.dataset.cat;
+    filters.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b));
+    sheet.querySelectorAll(".shot").forEach(li => li.hidden = cat !== "alle" && li.dataset.cat !== cat);
+    sheet.querySelectorAll(".shot:not([hidden]) canvas").forEach(c => {
+      if (Math.abs(c.width - Math.min(900, c.clientWidth * Math.min(2, devicePixelRatio || 1))) > 60) {
+        const i = +c.closest(".frame").dataset.i; render(c, PHOTOS[i], 900);
+      }
+    });
+  });
+
+  /* ---------- Lightbox ---------- */
+  const lb = document.getElementById("lb"), lbCanvas = document.getElementById("lb-canvas");
+  let current = 0;
+  function visible() { return [...sheet.querySelectorAll(".shot:not([hidden]) .frame")].map(b => +b.dataset.i); }
+  function openPhoto(i) {
+    current = i;
+    const ph = PHOTOS[i];
+    const w = Math.max(240, Math.min(innerWidth - 52, (innerHeight - 150) * .8, 860));
+    lbCanvas.style.width = w + "px"; lbCanvas.style.height = (w * 1.25) + "px";
+    document.getElementById("lb-title").textContent = `${ph.title} · ${ph.place}`;
+    document.getElementById("lb-exif").textContent = ph.exif;
+    lbCanvas.setAttribute("aria-label", `${ph.title}, ${ph.place}`);
+    if (!lb.open) lb.showModal();
+    render(lbCanvas, ph, 1600);
+  }
+  function stepPhoto(d) { const v = visible(); const k = v.indexOf(current); openPhoto(v[(k + d + v.length) % v.length]); }
+  sheet.addEventListener("click", e => { const b = e.target.closest(".frame"); if (b) openPhoto(+b.dataset.i); });
+  document.getElementById("lb-close").addEventListener("click", () => lb.close());
+  document.getElementById("lb-prev").addEventListener("click", () => stepPhoto(-1));
+  document.getElementById("lb-next").addEventListener("click", () => stepPhoto(1));
+  lb.addEventListener("click", e => { if (e.target === lb) lb.close(); });
+  lb.addEventListener("keydown", e => { if (e.key === "ArrowRight") stepPhoto(1); if (e.key === "ArrowLeft") stepPhoto(-1); });
+
+  /* ---------- Formular ---------- */
+  const date = document.getElementById("f-date");
+  date.min = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+  const form = document.getElementById("req"), done = document.getElementById("done");
+  const esc = s => s.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const name = document.getElementById("f-name").value.trim().split(" ")[0];
+    const kind = { "Porträt": "ein Porträt-Shooting", "Business": "ein Business-Shooting", "Hochzeit": "deine Hochzeit", "Etwas anderes": "dein Projekt" }[document.getElementById("f-kind").value];
+    done.innerHTML = `<strong>Danke, ${esc(name)}!</strong>Deine Anfrage für ${kind} ist notiert. Diese Demo verschickt nichts. Auf der fertigen Website geht die Nachricht direkt an Ronja.`;
+    done.hidden = false;
+  });
+})();
+</script>
+</body>
+</html>
