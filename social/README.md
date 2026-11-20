@@ -1,0 +1,172 @@
+# Instagram-Startpaket „Schaufenster“
+
+Profilbild und neun Beiträge für einen Design-Account. „Schaufenster“ ist ein Arbeitsname.
+
+## Profil
+
+- **Benutzername:** `schaufenster.studio` (Ausweichen: `schaufenster.web`, `dein.schaufenster`)
+- **Name:** `Schaufenster | Websites für Läden`
+- **Profilbild:** `bilder/00-profilbild.jpg`
+- **Kategorie:** Webdesigner oder Grafikdesigner
+
+**Bio** (112 von 150 Zeichen):
+
+```
+Websites für Nagelstudios, Cafés & alle Läden um die Ecke.
+Schön, schnell, gemacht fürs Handy.
+Anfragen per DM ↓
+```
+
+## Beiträge
+
+Bilder im Ordner `bilder/`, je 1080 × 1350 px. Reihenfolge beim Hochladen wie unten (das Neueste steht im Profil oben links).
+
+### Nr. 1 · Woche 1, Montag: Hallo
+
+Bild: `bilder/01-hallo.jpg`
+
+```
+Hallo! Hier entsteht Schaufenster. 👋
+
+Ich baue Websites für kleine Läden: Nagelstudios, Cafés, Fotograf:innen, Bäckereien, Friseure und alle, deren Kundschaft um die Ecke wohnt.
+
+Mir ist wichtig: Die Seite funktioniert auf dem Handy, zeigt Öffnungszeiten und Telefonnummer sofort und sieht aus wie euer Laden, nicht wie eine Vorlage.
+
+In den nächsten Tagen zeige ich euch drei Konzepte. Welche Branche soll ich mir danach vornehmen?
+
+#webdesign #websiteerstellen #kleinunternehmen #shoplocal #webdesigner
+```
+
+### Nr. 2 · Woche 1, Montag: Konzept Nagelstudio
+
+Bild: `bilder/02-konzept-nagelstudio.jpg`
+
+```
+Konzept 01: Feinschliff, ein Nagelstudio in Hamburg-Ottensen. Den Laden habe ich mir ausgedacht, damit ich frei gestalten kann.
+
+Das Besondere: Oben auf der Seite probieren Kundinnen Form, Farbe und Finish aus und schicken ihr Wunschdesign direkt mit der Terminanfrage. Dazu eine Preisliste, die man ohne Zoomen lesen kann, und Öffnungszeiten, die den heutigen Tag markieren.
+
+Welche Form trägst du am liebsten: Mandel, Oval, Eckig oder Ballerina?
+
+#nagelstudio #nageldesign #webdesign #beautystudio #websitedesign
+```
+
+### Nr. 3 · Woche 1, Montag: Konzept Café
+
+Bild: `bilder/03-konzept-cafe.jpg`
+
+```
+Konzept 02: Mahlgrad, ein Café mit eigener Backstube in Berlin-Neukölln.
+
+Die Tafel neben der Tür gibt es auch online. Sie zeigt jeden Tag automatisch den Kuchen des Tages. Darunter: ob das Café gerade offen hat, die ganze Karte und ein kleiner Mahlgrad-Finder für alle, die Bohnen mit nach Hause nehmen.
+
+Was bestellst du zuerst: Flat White oder Filterkaffee?
+
+#cafe #kaffee #gastronomie #webdesign #websitedesign
+```
+
+### Nr. 4 · Woche 1, Donnerstag: Konzept Fotografin
+
+Bild: `bilder/04-konzept-fotografin.jpg`
+
+```
+Konzept 03: Halbschatten, eine Fotografin in München.
+
+Bei Fotograf:innen müssen die Bilder wirken, die Seite hält sich zurück. Die Galerie ist wie ein Kontaktbogen aufgebaut, mit Filtern für Porträt, Hochzeit, Business und Draußen. Dazu klare Pakete mit Preisen und ein Ablauf vom ersten Anruf bis zur fertigen Galerie.
+
+Die Bilder im Konzept sind Platzhalter. Auf einer echten Seite stehen natürlich echte Fotos.
+
+#fotografie #fotograf #portfoliowebsite #hochzeitsfotografie #webdesign
+```
+
+### Nr. 5 · Woche 2, Dienstag: Checkliste
+
+Bild: `bilder/05-checkliste.jpg`
+
+```
+Speichern für später 📌
+
+Fünf Dinge, die auf jede Laden-Website gehören:
+1. Öffnungszeiten, am besten mit „heute“ markiert
+2. Eine Telefonnummer, die man auf dem Handy antippen kann
+3. Die Adresse mit Link zur Karte
+4. Preise oder zumindest einen Preisrahmen
+5. Echte Fotos von euch und eurem Laden
+
+Fehlt bei deiner Seite etwas davon? Dann weißt du, was als Nächstes dran ist.
+
+#websitetipps #kleinunternehmen #selbststaendig #webdesign #onlinemarketing
+```
+
+### Nr. 6 · Woche 2, Freitag: Detail: Jetzt geöffnet
+
+Bild: `bilder/06-detail-cafe.jpg`
+
+```
+Kleines Detail mit großer Wirkung: „Jetzt geöffnet“.
+
+Die häufigste Frage, bevor jemand losgeht: Hat der Laden gerade offen? Auf der Café-Seite rechnet die Website das selbst aus, nach Wochentag und Uhrzeit. Kein Pflegeaufwand, keine veralteten Angaben.
+
+#webdesign #uxdesign #cafe #kleinunternehmen #website
+```
+
+### Nr. 7 · Woche 3, Dienstag: Detail: Konfigurator
+
+Bild: `bilder/07-detail-nagelstudio.jpg`
+
+```
+Schon vor dem Termin wissen, was man will.
+
+Im Nagelstudio-Konzept stellen Kundinnen ihr Design selbst zusammen: vier Formen, zehn Farben, drei Finishes. Das Ergebnis landet direkt in der Terminanfrage. Das spart Beratungszeit und macht Spaß.
+
+Welche Kombi würdest du wählen?
+
+#nageldesign #nails #beautybusiness #webdesign #websitedesign
+```
+
+### Nr. 8 · Woche 3, Donnerstag: Ablauf
+
+Bild: `bilder/08-ablauf.jpg`
+
+```
+So kommt dein Laden ins Netz, in vier Schritten:
+
+1. Kennenlernen: 30 Minuten über deinen Laden, deine Kundschaft und was die Seite können soll.
+2. Entwurf: eine erste Version zum Anklicken, auf dem Handy und am Rechner.
+3. Feinschliff: Texte, Fotos und Details anpassen, bis alles passt.
+4. Online: Domain, Hosting und Google-Eintrag. Dann geht’s live.
+
+Fragen? Schreib mir eine Nachricht.
+
+#webdesign #websiteerstellen #selbststaendig #kleinunternehmen #webdesigner
+```
+
+### Nr. 9 · Woche 3, Samstag: „Wir haben doch Instagram“
+
+Bild: `bilder/09-instagram-und-website.jpg`
+
+```
+„Wir haben doch Instagram.“ Höre ich oft, und das ist super!
+
+Aber wer bei Google nach „Café in der Nähe“ oder „Nagelstudio Ottensen“ sucht, landet auf Websites und Google-Einträgen, nicht in deinen Stories. Und eine eigene Seite gehört dir, egal was mit den Plattformen passiert.
+
+Instagram und Website sind das beste Team.
+
+#website #onlinesichtbarkeit #kleinunternehmen #webdesign #shoplocal
+```
+
+## Bilder ändern
+
+Die Vorlagen liegen in `vorlagen/posts.html`. Name, Farben oder Texte dort ändern, dann neu erzeugen:
+
+```bash
+node social/vorlagen/render.js
+```
+
+Neue Screenshots der Websites (z. B. nach Änderungen an `websites/`):
+
+```bash
+node social/vorlagen/screens.js websites
+```
+
+Beides braucht Node.js und Playwright (`npm i playwright` und `npx playwright install chromium`).
